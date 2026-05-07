@@ -1,0 +1,37 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ColorConversion",
+  "operation": "convertColor",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/color",
+    "queryParameters": {
+      "color": "#ff5733"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "hex": "#ff5733",
+      "rgb": {
+        "r": 255,
+        "g": 87,
+        "b": 51
+      },
+      "rgbString": "rgb(255, 87, 51)",
+      "hsl": {
+        "h": 11,
+        "s": 100,
+        "l": 60
+      },
+      "hslString": "hsl(11, 100%, 60%)",
+      "rgba": "rgba(255, 87, 51, 1)",
+      "brightness": 132,
+      "isDark": false
+    }
+  }
+}

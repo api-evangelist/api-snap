@@ -1,0 +1,28 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "Identifier",
+  "operation": "generateId",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/uuid",
+    "queryParameters": {
+      "format": "uuid",
+      "count": 3,
+      "prefix": "usr_"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "ids": [
+        "usr_550e8400-e29b-41d4-a716-446655440000",
+        "usr_3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "usr_7b3a8f1c-4d2e-4b9a-8e6f-1c2d3e4f5a6b"
+      ]
+    }
+  }
+}

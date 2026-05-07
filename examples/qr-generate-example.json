@@ -1,0 +1,24 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ApiSnap",
+  "operation": "generateQrCode",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/qr",
+    "queryParameters": {
+      "data": "https://example.com/landing",
+      "size": 512,
+      "format": "png",
+      "dark": "#000000",
+      "light": "#ffffff"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "image/png",
+    "note": "Returns the binary PNG image bytes"
+  }
+}

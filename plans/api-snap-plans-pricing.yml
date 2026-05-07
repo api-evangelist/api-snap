@@ -1,0 +1,137 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: API Snap
+providerId: api-snap
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: true
+tags:
+  - Developer Utilities
+  - API Subscription
+  - Tiered Pricing
+  - Predictable Pricing
+  - Image Processing
+description: >-
+  API Snap prices the entire 13+ utility API portfolio as a single subscription
+  with four tiers (Free, Hobby, Pro, Business) differentiated by monthly request
+  quota and support level. Every tier includes access to all endpoints; the
+  pricing page emphasizes "Simple, Predictable Pricing" with no per-endpoint
+  fees and no overage surprises. The Free tier requires no credit card.
+sources:
+  - https://api-snap.com/pricing
+  - https://api-snap.com/
+plans:
+  - id: api-snap-free
+    name: Free
+    type: freemium
+    description: 100 API calls/month across all 13+ endpoints with community support; no credit card required.
+    entries:
+      - label: Monthly API call quota
+        name: free_quota
+        type: quota
+        metric: request
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Access to all endpoints
+      - name: Community support
+      - name: No credit card required
+      - name: X-RateLimit-* response headers
+
+  - id: api-snap-hobby
+    name: Hobby
+    type: subscription
+    description: $9/month for 5,000 API calls with email support and an API usage dashboard.
+    entries:
+      - label: Plan monthly fee
+        name: hobby_monthly
+        type: flat
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '9.00'
+        userMultiplied: false
+      - label: Monthly API call quota
+        name: hobby_quota
+        type: quota
+        metric: request
+        limit: 5000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Access to all endpoints
+      - name: Email support
+      - name: API usage dashboard
+
+  - id: api-snap-pro
+    name: Pro
+    type: subscription
+    description: $29/month for 50,000 API calls with priority support and higher rate limits. Most popular tier.
+    entries:
+      - label: Plan monthly fee
+        name: pro_monthly
+        type: flat
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.00'
+        userMultiplied: false
+      - label: Monthly API call quota
+        name: pro_quota
+        type: quota
+        metric: request
+        limit: 50000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Access to all endpoints
+      - name: Priority support
+      - name: Higher rate limits
+      - name: API usage dashboard
+
+  - id: api-snap-business
+    name: Business
+    type: subscription
+    description: $99/month for 500,000 API calls with dedicated support, custom rate limits, and an SLA guarantee.
+    entries:
+      - label: Plan monthly fee
+        name: business_monthly
+        type: flat
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '99.00'
+        userMultiplied: false
+      - label: Monthly API call quota
+        name: business_quota
+        type: quota
+        metric: request
+        limit: 500000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Access to all endpoints
+      - name: Dedicated support
+      - name: Custom rate limits
+      - name: SLA guarantee
+      - name: API usage dashboard

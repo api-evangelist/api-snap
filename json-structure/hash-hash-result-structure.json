@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-structure/hash-hash-result-structure.json",
+  "name": "HashResult",
+  "description": "Result of a hash computation including hash value, algorithm, and encoding",
+  "type": "object",
+  "properties": {
+    "hash": {
+      "type": "string",
+      "description": "The computed hash value."
+    },
+    "algorithm": {
+      "type": "string"
+    },
+    "encoding": {
+      "type": "string"
+    }
+  }
+}

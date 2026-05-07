@@ -1,0 +1,26 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ApiSnap",
+  "operation": "resizeImage",
+  "request": {
+    "method": "POST",
+    "url": "https://api-snap.com/api/resize",
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "url": "https://example.com/photo.jpg",
+      "width": 800,
+      "height": 600,
+      "format": "webp",
+      "quality": 85,
+      "fit": "cover"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "image/webp",
+    "note": "Returns the resized binary image"
+  }
+}

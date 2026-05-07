@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-schema/color-color-conversion-schema.json",
+  "title": "ColorConversion",
+  "description": "Converted color representation across hex, RGB, and HSL formats",
+  "type": "object",
+  "properties": {
+    "hex": {
+      "type": "string",
+      "example": "#ff0000"
+    },
+    "rgb": {
+      "type": "object",
+      "properties": {
+        "r": {
+          "type": "integer"
+        },
+        "g": {
+          "type": "integer"
+        },
+        "b": {
+          "type": "integer"
+        }
+      }
+    },
+    "rgbString": {
+      "type": "string",
+      "example": "rgb(255, 0, 0)"
+    },
+    "hsl": {
+      "type": "object",
+      "properties": {
+        "h": {
+          "type": "integer"
+        },
+        "s": {
+          "type": "integer"
+        },
+        "l": {
+          "type": "integer"
+        }
+      }
+    },
+    "hslString": {
+      "type": "string",
+      "example": "hsl(0, 100%, 50%)"
+    },
+    "rgba": {
+      "type": "string",
+      "example": "rgba(255, 0, 0, 1)"
+    },
+    "brightness": {
+      "type": "integer",
+      "description": "Perceived brightness (0\u2013255)."
+    },
+    "isDark": {
+      "type": "boolean",
+      "description": "True if the color is perceived as dark."
+    }
+  }
+}

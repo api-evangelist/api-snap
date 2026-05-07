@@ -1,0 +1,25 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "LoremText",
+  "operation": "generateLoremIpsum",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/lorem",
+    "queryParameters": {
+      "paragraphs": 2,
+      "sentences": 3,
+      "format": "text"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore. Ut enim ad minim veniam.\n\nQuis nostrud exercitation ullamco laboris nisi. Duis aute irure dolor in reprehenderit. Excepteur sint occaecat cupidatat non proident.",
+      "paragraphs": 2
+    }
+  }
+}

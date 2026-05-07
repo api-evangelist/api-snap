@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-schema/uuid-id-result-schema.json",
+  "title": "IdResult",
+  "description": "Result of UUID/unique ID generation",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Single generated ID."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of generated IDs."
+        }
+      }
+    }
+  ]
+}

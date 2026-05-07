@@ -1,0 +1,312 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: API Snap
+  description: >-
+    Complete taxonomy of API Snap services mapping operational (OpenAPI) and
+    capability (Naftiko) dimensions across the 13+ developer utility endpoints
+    bundled into a single REST service at https://api-snap.com.
+  created: "2026-05-06"
+  modified: "2026-05-06"
+
+operational:
+  apis:
+    - name: API Snap
+      namespace: api-snap
+      version: "1.0.0"
+      baseUrl: https://api-snap.com
+      status: active
+
+  resources:
+    - name: QR Code
+      namespace: api-snap
+      path: /api/qr
+      description: Generate QR codes for arbitrary text or URLs
+      operations:
+        - generateQrCode
+      tags:
+        - Images
+        - QR Codes
+    - name: Image Resize
+      namespace: api-snap
+      path: /api/resize
+      description: Resize and convert images across PNG, JPEG, WebP, AVIF
+      operations:
+        - resizeImage
+      tags:
+        - Images
+        - Image Processing
+    - name: Placeholder Image
+      namespace: api-snap
+      path: /api/placeholder
+      description: Generate SVG placeholder images for design and prototyping
+      operations:
+        - generatePlaceholderImage
+      tags:
+        - Images
+        - Placeholder Images
+    - name: Screenshot
+      namespace: api-snap
+      path: /api/screenshot
+      description: Capture webpage screenshots
+      operations:
+        - captureScreenshot
+      tags:
+        - Browser
+        - Screenshots
+    - name: PDF Generation
+      namespace: api-snap
+      path: /api/pdf
+      description: Render HTML content as PDF documents
+      operations:
+        - htmlToPdf
+      tags:
+        - Documents
+        - PDF Generation
+    - name: Markdown Rendering
+      namespace: api-snap
+      path: /api/markdown
+      description: Convert Markdown content to HTML
+      operations:
+        - markdownToHtml
+      tags:
+        - Documents
+        - Markdown
+    - name: URL Metadata
+      namespace: api-snap
+      path: /api/meta
+      description: Extract Open Graph and metadata for any URL
+      operations:
+        - extractUrlMetadata
+      tags:
+        - Utilities
+        - URL Metadata
+    - name: Hashing
+      namespace: api-snap
+      path: /api/hash
+      description: Cryptographic hashing of arbitrary text
+      operations:
+        - hashStringGet
+        - hashStringPost
+      tags:
+        - Security
+        - Hashing
+    - name: JWT Decode
+      namespace: api-snap
+      path: /api/jwt-decode
+      description: Decode JSON Web Tokens without verification
+      operations:
+        - decodeJwt
+      tags:
+        - Security
+        - JWT
+    - name: Base64
+      namespace: api-snap
+      path: /api/base64
+      description: Base64 encoding and decoding with optional URL-safe alphabet
+      operations:
+        - base64EncodeDecode
+      tags:
+        - Utilities
+        - Base64
+    - name: UUID Generation
+      namespace: api-snap
+      path: /api/uuid
+      description: Generate UUIDs and unique IDs in multiple formats
+      operations:
+        - generateId
+      tags:
+        - Utilities
+        - UUID
+    - name: Color Conversion
+      namespace: api-snap
+      path: /api/color
+      description: Convert color values across hex, RGB, and HSL formats
+      operations:
+        - convertColor
+      tags:
+        - Utilities
+        - Color
+    - name: Lorem Ipsum
+      namespace: api-snap
+      path: /api/lorem
+      description: Generate lorem ipsum placeholder text
+      operations:
+        - generateLoremIpsum
+      tags:
+        - Utilities
+        - Lorem Ipsum
+
+capability:
+  workflows:
+    - name: Content Generation
+      file: capabilities/content-generation.yaml
+      description: >-
+        Visual and document generation workflow combining QR code, screenshot,
+        image resize, PDF, Markdown, placeholder, and URL metadata endpoints.
+      apis:
+        - api-snap
+      toolCount: 7
+      personas:
+        - content-engineer
+        - growth-engineer
+        - cms-integrator
+    - name: Developer Utilities
+      file: capabilities/developer-utilities.yaml
+      description: >-
+        Backend developer primitive workflow combining hashing, JWT decode,
+        Base64, UUID generation, color conversion, and lorem ipsum endpoints.
+      apis:
+        - api-snap
+      toolCount: 6
+      personas:
+        - backend-engineer
+        - platform-engineer
+        - developer-tools-builder
+
+  personas:
+    - id: content-engineer
+      name: Content Engineer
+      description: Engineer building content publishing, link previews, and visual assets
+      workflows:
+        - Content Generation
+    - id: growth-engineer
+      name: Growth Engineer
+      description: Engineer building marketing assets, QR campaigns, and landing-page automation
+      workflows:
+        - Content Generation
+    - id: cms-integrator
+      name: CMS Integrator
+      description: Developer integrating Markdown rendering, PDF generation, and screenshots into a CMS
+      workflows:
+        - Content Generation
+    - id: backend-engineer
+      name: Backend Engineer
+      description: Engineer building application services that need IDs, hashing, and encoding utilities
+      workflows:
+        - Developer Utilities
+    - id: platform-engineer
+      name: Platform Engineer
+      description: Engineer centralizing developer primitives across services
+      workflows:
+        - Developer Utilities
+    - id: developer-tools-builder
+      name: Developer Tools Builder
+      description: Engineer integrating utility primitives into IDE, CLI, or admin tooling
+      workflows:
+        - Developer Utilities
+
+  domains:
+    - name: Visual Content
+      description: Generation of visual assets including QR codes, screenshots, resized images, and placeholders
+      resources:
+        - qr-code
+        - screenshot
+        - image-resize
+        - placeholder-image
+      workflows:
+        - Content Generation
+    - name: Document Rendering
+      description: Generation and conversion of structured documents
+      resources:
+        - pdf-generation
+        - markdown-rendering
+      workflows:
+        - Content Generation
+    - name: Web Metadata
+      description: Inspection and extraction of metadata from web URLs
+      resources:
+        - url-metadata
+      workflows:
+        - Content Generation
+    - name: Identifiers
+      description: Generation of UUIDs and unique IDs
+      resources:
+        - uuid-generation
+      workflows:
+        - Developer Utilities
+    - name: Encoding and Hashing
+      description: Cryptographic hashing, JWT inspection, and Base64 encoding
+      resources:
+        - hashing
+        - jwt-decode
+        - base64
+      workflows:
+        - Developer Utilities
+    - name: Design Utilities
+      description: Color conversion and placeholder text for design and prototyping
+      resources:
+        - color-conversion
+        - lorem-ipsum
+      workflows:
+        - Developer Utilities
+
+crossReference:
+  description: Maps each operational resource to the capability workflow(s) that consume it
+  mappings:
+    - resource: qr-code
+      operations:
+        - generateQrCode
+      workflows:
+        - Content Generation
+    - resource: image-resize
+      operations:
+        - resizeImage
+      workflows:
+        - Content Generation
+    - resource: placeholder-image
+      operations:
+        - generatePlaceholderImage
+      workflows:
+        - Content Generation
+    - resource: screenshot
+      operations:
+        - captureScreenshot
+      workflows:
+        - Content Generation
+    - resource: pdf-generation
+      operations:
+        - htmlToPdf
+      workflows:
+        - Content Generation
+    - resource: markdown-rendering
+      operations:
+        - markdownToHtml
+      workflows:
+        - Content Generation
+    - resource: url-metadata
+      operations:
+        - extractUrlMetadata
+      workflows:
+        - Content Generation
+    - resource: hashing
+      operations:
+        - hashStringGet
+        - hashStringPost
+      workflows:
+        - Developer Utilities
+    - resource: jwt-decode
+      operations:
+        - decodeJwt
+      workflows:
+        - Developer Utilities
+    - resource: base64
+      operations:
+        - base64EncodeDecode
+      workflows:
+        - Developer Utilities
+    - resource: uuid-generation
+      operations:
+        - generateId
+      workflows:
+        - Developer Utilities
+    - resource: color-conversion
+      operations:
+        - convertColor
+      workflows:
+        - Developer Utilities
+    - resource: lorem-ipsum
+      operations:
+        - generateLoremIpsum
+      workflows:
+        - Developer Utilities

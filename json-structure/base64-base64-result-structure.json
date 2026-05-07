@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-structure/base64-base64-result-structure.json",
+  "name": "Base64Result",
+  "description": "Base64 encode/decode result",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "encode",
+        "decode"
+      ]
+    }
+  }
+}

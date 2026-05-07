@@ -1,0 +1,27 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "Hash",
+  "operation": "hashStringPost",
+  "request": {
+    "method": "POST",
+    "url": "https://api-snap.com/api/hash",
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "Hello, World!",
+      "algorithm": "sha256",
+      "encoding": "hex"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "hash": "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f",
+      "algorithm": "sha256",
+      "encoding": "hex"
+    }
+  }
+}

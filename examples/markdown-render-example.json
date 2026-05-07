@@ -1,0 +1,24 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ApiSnap",
+  "operation": "markdownToHtml",
+  "request": {
+    "method": "POST",
+    "url": "https://api-snap.com/api/markdown",
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "markdown": "# Hello\n\nThis is **markdown**.",
+      "styled": false
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "html": "<h1>Hello</h1>\n<p>This is <strong>markdown</strong>.</p>"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: API Snap
+providerId: api-snap
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Developer Utilities
+  - Subscription Quotas
+description: >-
+  API Snap enforces rate limits per API key. Documented limits come from the
+  pricing page as monthly request quotas (100 / 5,000 / 50,000 / 500,000 calls
+  for Free / Hobby / Pro / Business tiers) and from the OpenAPI spec which
+  declares a 429 response on every operation. Per-second or per-minute burst
+  ceilings are not published on the public site as of profiling; the
+  X-RateLimit-Limit and X-RateLimit-Remaining response headers are documented
+  on the docs page and a structured 429 body returns `usage`, `limit`, and an
+  `upgrade_url`. reconciled is false because per-second burst numbers are not
+  publicly published.
+sources:
+  - https://api-snap.com/pricing
+  - https://api-snap.com/
+  - https://api-snap.com/openapi.json
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - name: Free monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 100
+    timeFrame: month
+    notes: Free tier; 100 API calls/month across all 13+ endpoints. No credit card required.
+  - name: Hobby monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 5000
+    timeFrame: month
+    notes: $9/month tier.
+  - name: Pro monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 50000
+    timeFrame: month
+    notes: $29/month tier; "higher rate limits" advertised vs Hobby (specific per-second numbers not published).
+  - name: Business monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 500000
+    timeFrame: month
+    notes: $99/month tier; advertises "custom rate limits" and an SLA guarantee.
+  - name: Per-request burst ceiling
+    scope: api-key
+    metric: varies
+    limit: 'see https://api-snap.com/pricing — published as plan-tier rate limits without per-second numbers'
+    notes: API Snap does not publish per-second or per-minute limits. Pro and Business tiers advertise "higher" and "custom" rate limits respectively.
+policies:
+  - name: Single key across all endpoints
+    description: One API key (snp_ prefix) authorizes every endpoint in the platform; quotas and rate limits are enforced per key, not per endpoint.
+  - name: Quota reset
+    description: Monthly request counters reset on the billing cycle anniversary.
+  - name: Throttle response body
+    description: HTTP 429 responses include a JSON body with `usage`, `limit`, and an `upgrade_url` pointing to https://api-snap.com/pricing so clients can prompt users to upgrade in-product.
+  - name: Rate limit headers
+    description: Every response includes X-RateLimit-Limit and X-RateLimit-Remaining headers so clients can implement adaptive throttling.
+  - name: Custom limits at Business tier
+    description: The Business plan advertises "custom rate limits" - bespoke limits should be confirmed with sales.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-schema/base64-base64-result-schema.json",
+  "title": "Base64Result",
+  "description": "Base64 encode/decode result",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "encode",
+        "decode"
+      ]
+    }
+  }
+}

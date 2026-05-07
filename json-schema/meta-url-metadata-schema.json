@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-schema/meta-url-metadata-schema.json",
+  "title": "UrlMetadata",
+  "description": "URL metadata including Open Graph tags, favicon, theme color, and authorship",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true
+    },
+    "siteName": {
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "nullable": true
+    },
+    "favicon": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true
+    },
+    "themeColor": {
+      "type": "string",
+      "nullable": true
+    },
+    "author": {
+      "type": "string",
+      "nullable": true
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    }
+  }
+}

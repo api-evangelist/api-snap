@@ -1,0 +1,26 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "Base64Result",
+  "operation": "base64EncodeDecode",
+  "request": {
+    "method": "POST",
+    "url": "https://api-snap.com/api/base64",
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "input": "Hello, World!",
+      "action": "encode",
+      "urlSafe": false
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "result": "SGVsbG8sIFdvcmxkIQ==",
+      "action": "encode"
+    }
+  }
+}

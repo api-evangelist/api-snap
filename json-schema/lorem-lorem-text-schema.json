@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-schema/lorem-lorem-text-schema.json",
+  "title": "LoremText",
+  "description": "Generated lorem ipsum placeholder text",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "All paragraphs joined by double newlines."
+    },
+    "paragraphs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of individual paragraph strings."
+    }
+  }
+}

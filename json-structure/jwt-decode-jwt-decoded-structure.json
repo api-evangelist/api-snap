@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/json-structure/jwt-decode-jwt-decoded-structure.json",
+  "name": "JwtDecoded",
+  "description": "Decoded JWT including header, payload, and expiration metadata",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Decoded JWT header.",
+      "additionalProperties": true
+    },
+    "payload": {
+      "type": "object",
+      "description": "Decoded JWT payload.",
+      "additionalProperties": true
+    },
+    "expired": {
+      "type": "boolean",
+      "description": "Whether the token has expired (only present if `exp` claim exists)."
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "description": "ISO 8601 expiry time (only present if `exp` claim exists)."
+    },
+    "issuedAt": {
+      "type": "datetime",
+      "description": "ISO 8601 issued-at time (only present if `iat` claim exists)."
+    }
+  }
+}

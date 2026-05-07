@@ -1,0 +1,24 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ApiSnap",
+  "operation": "captureScreenshot",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/screenshot",
+    "queryParameters": {
+      "url": "https://example.com",
+      "width": 1280,
+      "height": 720,
+      "format": "png",
+      "full_page": false
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "image/png",
+    "note": "Returns the binary screenshot image"
+  }
+}

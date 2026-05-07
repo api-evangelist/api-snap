@@ -1,0 +1,34 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "JwtDecoded",
+  "operation": "decodeJwt",
+  "request": {
+    "method": "POST",
+    "url": "https://api-snap.com/api/jwt-decode",
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNzAwMDAwMDAwfQ.signature"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "header": {
+        "alg": "HS256",
+        "typ": "JWT"
+      },
+      "payload": {
+        "sub": "1234567890",
+        "name": "Jane Doe",
+        "iat": 1700000000
+      },
+      "expired": false,
+      "expiresAt": null,
+      "issuedAt": "2023-11-14T22:13:20Z"
+    }
+  }
+}

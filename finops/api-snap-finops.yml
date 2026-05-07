@@ -1,0 +1,111 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: API Snap
+providerId: api-snap
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: false
+tags:
+  - Developer Utilities
+  - API Subscription
+  - FinOps
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps for API Snap - flat tiered subscription (Free / Hobby /
+  Pro / Business) with a single monthly request quota that covers all 13+
+  utility endpoints under one API key. No per-endpoint billing or per-call
+  overage charges are published; consumption telemetry surfaces via the
+  X-RateLimit-* response headers and the in-product API usage dashboard offered
+  on Hobby and above. reconciled is false because the public-facing FinOps
+  surface (overage handling, invoice line items) is not documented separately
+  from the pricing page.
+sources:
+  - https://api-snap.com/pricing
+  - https://api-snap.com/
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: API Snap
+serviceCategory: Developer Utilities
+billingModel:
+  pricingCategory: Tiered Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Usage
+    - Adjustment
+    - Refund
+    - Credit
+focusColumns:
+  ServiceName: API Snap
+  ServiceCategory: Developer Utilities
+  ProviderName: API Snap
+  PublisherName: API Snap
+  InvoiceIssuerName: API Snap
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Tiered Subscription
+  PricingUnit: month
+meters:
+  - name: plan_month
+    description: Monthly subscription line for the active plan tier (Hobby / Pro / Business). Free tier has no plan_month line.
+    unit: month
+    aggregation: count
+    dimensions:
+      - plan
+  - name: monthly_request_quota
+    description: Plan-tier monthly request quota (100 / 5,000 / 50,000 / 500,000) covering all 13+ endpoints under one API key.
+    unit: request
+    aggregation: max
+    dimensions:
+      - plan
+      - api_key
+  - name: requests_consumed
+    description: Actual request count made against the API key, drawn from the monthly quota. Surfaced via X-RateLimit-Limit and X-RateLimit-Remaining response headers and the in-product API usage dashboard.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api_key
+      - endpoint
+      - status_code
+  - name: rate_throttle_events
+    description: Count of HTTP 429 responses returned to the client; signals that the monthly quota or plan rate ceiling is being hit. Each 429 body includes usage, limit, and an upgrade_url.
+    unit: event
+    aggregation: sum
+    dimensions:
+      - api_key
+      - endpoint
+principles:
+  - name: Visibility
+    description: >-
+      Read X-RateLimit-Limit and X-RateLimit-Remaining headers on every
+      response; on Hobby and above, watch the in-product API usage dashboard
+      to track consumption against the monthly quota. The 429 body returns
+      `usage`, `limit`, and an `upgrade_url` for in-product upgrade prompts.
+  - name: Allocation
+    description: >-
+      API Snap issues a single key per account; for multi-product attribution
+      tag outbound requests with a per-service correlation header on the
+      caller side and aggregate by `endpoint` dimension in the meter.
+  - name: Optimization
+    description: >-
+      Cache image, screenshot, PDF, and metadata responses aggressively at
+      the consumer side - many of these endpoints produce deterministic or
+      slowly-changing outputs. Right-size the plan tier monthly: 100 free
+      calls, 5,000 hobby, 50,000 pro, 500,000 business. Negotiate custom
+      rate limits at the Business tier when burst patterns require them.
+  - name: Accountability
+    description: >-
+      Engineering owns the API key and caching layer; the consuming product
+      team owns the monthly request budget. The owner of the API Snap
+      account holds the upgrade decision when the in-product upgrade_url
+      surfaces in 429 responses.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

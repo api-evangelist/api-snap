@@ -1,0 +1,24 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "ApiSnap",
+  "operation": "generatePlaceholderImage",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/placeholder",
+    "queryParameters": {
+      "w": 600,
+      "h": 400,
+      "bg": "cccccc",
+      "fg": "666666",
+      "text": "Hero Image"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "image/svg+xml",
+    "note": "Returns an SVG placeholder image"
+  }
+}

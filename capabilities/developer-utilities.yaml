@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Snap Developer Utilities
+  description: >-
+    Workflow that combines API Snap's developer-focused utility endpoints
+    (hash, JWT decode, Base64, UUID/ID generation, color conversion, lorem
+    ipsum) into a single REST and MCP surface. Used by backend engineers,
+    platform teams, and developer-tooling integrations to centralize commonly
+    needed primitives that would otherwise be implemented as scattered
+    libraries.
+  tags:
+    - API Snap
+    - Developer Utilities
+    - Hashing
+    - JWT
+    - Base64
+    - UUID
+    - Color
+    - Lorem Ipsum
+  created: '2026-05-06'
+  modified: '2026-05-06'
+binds:
+  - namespace: env
+    keys:
+      API_SNAP_API_KEY: API_SNAP_API_KEY
+capability:
+  consumes:
+    - import: api-snap
+      location: ./shared/api-snap.yaml
+  exposes:
+    - type: rest
+      port: 7083
+      namespace: developer-utilities-api
+      description: Unified REST API for backend developer utility primitives.
+      resources:
+        - path: /v1/hashes
+          name: hashes
+          description: Cryptographic hash generation
+          operations:
+            - method: GET
+              name: getHash
+              description: Hash a string via query parameters
+              call: api-snap.hashStringGet
+              with:
+                text: rest.text
+                algorithm: rest.algorithm
+                encoding: rest.encoding
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+            - method: POST
+              name: createHash
+              description: Hash a string via JSON body
+              call: api-snap.hashStringPost
+              with:
+                text: rest.text
+                algorithm: rest.algorithm
+                encoding: rest.encoding
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+        - path: /v1/jwts
+          name: jwts
+          description: JWT inspection
+          operations:
+            - method: POST
+              name: decodeJwt
+              description: Decode a JWT and return its claims
+              call: api-snap.decodeJwt
+              with:
+                token: rest.token
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+        - path: /v1/base64
+          name: base64
+          description: Base64 encoding and decoding
+          operations:
+            - method: POST
+              name: transformBase64
+              description: Encode or decode a Base64 string
+              call: api-snap.base64EncodeDecode
+              with:
+                input: rest.input
+                action: rest.action
+                urlSafe: rest.urlSafe
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+        - path: /v1/ids
+          name: ids
+          description: UUID and unique ID generation
+          operations:
+            - method: GET
+              name: generateIds
+              description: Generate one or more unique IDs
+              call: api-snap.generateId
+              with:
+                format: rest.format
+                count: rest.count
+                prefix: rest.prefix
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+        - path: /v1/colors
+          name: colors
+          description: Color format conversion
+          operations:
+            - method: GET
+              name: convertColor
+              description: Convert a color value across hex, RGB, and HSL
+              call: api-snap.convertColor
+              with:
+                color: rest.color
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+        - path: /v1/lorem
+          name: lorem
+          description: Lorem ipsum placeholder text
+          operations:
+            - method: GET
+              name: generateLorem
+              description: Generate lorem ipsum placeholder text
+              call: api-snap.generateLoremIpsum
+              with:
+                paragraphs: rest.paragraphs
+                sentences: rest.sentences
+                format: rest.format
+              outputParameters:
+                - type: object
+                  mapping: '$.'
+    - type: mcp
+      port: 7084
+      namespace: developer-utilities-mcp
+      transport: http
+      description: MCP server exposing developer utility primitives for AI agents.
+      tools:
+        - name: hash-string
+          description: Compute a cryptographic hash of a string.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.hashStringPost
+          with:
+            text: tools.text
+            algorithm: tools.algorithm
+            encoding: tools.encoding
+          outputParameters:
+            - type: object
+              mapping: '$.'
+        - name: decode-jwt
+          description: Decode a JWT token and return header, payload, and expiration metadata.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.decodeJwt
+          with:
+            token: tools.token
+          outputParameters:
+            - type: object
+              mapping: '$.'
+        - name: base64-encode-decode
+          description: Encode or decode a Base64 string.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.base64EncodeDecode
+          with:
+            input: tools.input
+            action: tools.action
+            urlSafe: tools.urlSafe
+          outputParameters:
+            - type: object
+              mapping: '$.'
+        - name: generate-ids
+          description: Generate UUIDs or unique IDs in multiple formats.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.generateId
+          with:
+            format: tools.format
+            count: tools.count
+            prefix: tools.prefix
+          outputParameters:
+            - type: object
+              mapping: '$.'
+        - name: convert-color
+          description: Convert a color value across hex, RGB, and HSL representations.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.convertColor
+          with:
+            color: tools.color
+          outputParameters:
+            - type: object
+              mapping: '$.'
+        - name: generate-lorem
+          description: Generate lorem ipsum placeholder text.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: api-snap.generateLoremIpsum
+          with:
+            paragraphs: tools.paragraphs
+            sentences: tools.sentences
+            format: tools.format
+          outputParameters:
+            - type: object
+              mapping: '$.'

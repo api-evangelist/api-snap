@@ -1,0 +1,31 @@
+{
+  "@context": "../json-ld/api-snap-context.jsonld",
+  "@type": "UrlMetadata",
+  "operation": "extractUrlMetadata",
+  "request": {
+    "method": "GET",
+    "url": "https://api-snap.com/api/meta",
+    "queryParameters": {
+      "url": "https://example.com"
+    },
+    "headers": {
+      "Authorization": "Bearer snp_REDACTED"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "contentType": "application/json",
+    "body": {
+      "url": "https://example.com",
+      "title": "Example Domain",
+      "description": "This domain is for use in illustrative examples.",
+      "image": "https://example.com/og.png",
+      "siteName": "Example",
+      "type": "website",
+      "favicon": "https://example.com/favicon.ico",
+      "themeColor": "#0070f3",
+      "author": "Example",
+      "published": "2024-01-15T12:00:00Z"
+    }
+  }
+}
