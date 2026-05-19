@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Snap — Security
+  description: 'API Snap — Security. 3 operations. Lead operation: Hash a String (GET). Self-contained Naftiko capability
+    covering one Api Snap business surface.'
+  tags:
+  - Api Snap
+  - Security
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    API_SNAP_API_KEY: API_SNAP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-snap-security
+    baseUri: https://api-snap.com
+    description: API Snap — Security business capability. Self-contained, no shared references.
+    resources:
+    - name: api-hash
+      path: /api/hash
+      operations:
+      - name: hashstringget
+        method: GET
+        description: Hash a String (GET)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: text
+          in: query
+          type: string
+          description: The string to hash.
+          required: true
+        - name: algorithm
+          in: query
+          type: string
+          description: Hash algorithm to use.
+        - name: encoding
+          in: query
+          type: string
+          description: Output encoding.
+      - name: hashstringpost
+        method: POST
+        description: Hash a String (POST)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-jwt-decode
+      path: /api/jwt-decode
+      operations:
+      - name: decodejwt
+        method: POST
+        description: Decode a JWT Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.API_SNAP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: api-snap-security-rest
+    port: 8080
+    description: REST adapter for API Snap — Security. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/hash
+      name: api-hash
+      description: REST surface for api-hash.
+      operations:
+      - method: GET
+        name: hashstringget
+        description: Hash a String (GET)
+        call: api-snap-security.hashstringget
+        with:
+          text: rest.text
+          algorithm: rest.algorithm
+          encoding: rest.encoding
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: hashstringpost
+        description: Hash a String (POST)
+        call: api-snap-security.hashstringpost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/jwt-decode
+      name: api-jwt-decode
+      description: REST surface for api-jwt-decode.
+      operations:
+      - method: POST
+        name: decodejwt
+        description: Decode a JWT Token
+        call: api-snap-security.decodejwt
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-snap-security-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Snap — Security. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: hash-string-get
+      description: Hash a String (GET)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-snap-security.hashstringget
+      with:
+        text: tools.text
+        algorithm: tools.algorithm
+        encoding: tools.encoding
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: hash-string-post
+      description: Hash a String (POST)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-snap-security.hashstringpost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: decode-jwt-token
+      description: Decode a JWT Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-snap-security.decodejwt
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
