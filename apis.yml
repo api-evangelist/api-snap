@@ -3,387 +3,410 @@ url: https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/a
 name: API Snap
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-description: API Snap is a developer utility platform that consolidates 13+ commonly needed REST APIs into a single, unified
-  service with one API key. The platform provides QR code generation, screenshot capture, image resize and conversion, HTML-to-PDF
-  rendering, Markdown-to-HTML conversion, URL metadata extraction, cryptographic hashing, JWT decoding, Base64 encoding/decoding,
-  UUID and unique ID generation, color format conversion, lorem ipsum text generation, and SVG placeholder image generation.
-  API Snap aims to eliminate dependency bloat by letting developers replace small libraries and self-hosted utility services
-  with simple HTTP requests against a managed, rate-limited, multi-tenant API.
+description: >-
+  API Snap is a developer utility platform that consolidates 13+ commonly needed REST APIs into a single, unified
+  service with one API key. The platform provides QR code generation, screenshot capture, image resize and conversion,
+  HTML-to-PDF rendering, Markdown-to-HTML conversion, URL metadata extraction, cryptographic hashing, JWT decoding,
+  Base64 encoding/decoding, UUID and unique ID generation, color format conversion, lorem ipsum text generation, and SVG
+  placeholder image generation. API Snap aims to eliminate dependency bloat by letting developers replace small
+  libraries and self-hosted utility services with simple HTTP requests against a managed, rate-limited, multi-tenant
+  API.
 created: '2026-05-06'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
-- API Utilities
-- Developer Tools
-- QR Codes
-- Screenshots
-- Image Processing
-- PDF Generation
-- Markdown
-- URL Metadata
-- Hashing
-- JWT
-- Base64
-- UUID
-- Color Conversion
-- Lorem Ipsum
-- Placeholder Images
+  - API Utilities
+  - Developer Tools
+  - QR Codes
+  - Screenshots
+  - Image Processing
+  - PDF Generation
+  - Markdown
+  - URL Metadata
+  - Hashing
+  - JWT
+  - Base64
+  - UUID
+  - Color Conversion
+  - Lorem Ipsum
+  - Placeholder Images
 url-source: https://api-snap.com/
 apis:
-- aid: api-snap:qr
-  name: QR Code API
-  tags:
-  - QR Codes
-  - Image Generation
-  - Encoding
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/qr-generate-example.json
-    type: Example
-  - type: NaftikoCapability
-    url: capabilities/api-snap-browser.yaml
-  - type: NaftikoCapability
-    url: capabilities/api-snap-documents.yaml
-  - type: NaftikoCapability
-    url: capabilities/api-snap-images.yaml
-  - type: NaftikoCapability
-    url: capabilities/api-snap-security.yaml
-  - type: NaftikoCapability
-    url: capabilities/api-snap-utilities.yaml
-  description: Generate QR codes encoding any text or URL. Supports configurable size up to 1000 pixels, PNG or SVG output
-    formats, and custom foreground/background hex colors. Returns the encoded image directly with the appropriate content
-    type.
-- aid: api-snap:screenshot
-  name: Screenshot API
-  tags:
-  - Screenshots
-  - Browser Automation
-  - Web Capture
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/screenshot-capture-example.json
-    type: Example
-  description: Capture a webpage screenshot by URL. Configurable viewport width and height, output format (PNG or JPEG), and
-    an option to capture the full scrollable page. A managed alternative to running headless Chromium or Puppeteer.
-- aid: api-snap:resize
-  name: Image Resize API
-  tags:
-  - Image Processing
-  - Image Resize
-  - Format Conversion
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/resize-image-example.json
-    type: Example
-  description: Resize and convert images. Accepts a binary upload, base64 string, or remote URL. Supports PNG, JPEG, WebP,
-    and AVIF output, configurable quality, target width and height up to 4096 pixels, and standard fit modes (cover, contain,
-    fill, inside, outside).
-- aid: api-snap:pdf
-  name: PDF API
-  tags:
-  - PDF
-  - Document Generation
-  - HTML to PDF
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/pdf-generate-example.json
-    type: Example
-  description: Convert HTML content into a PDF document. Accepts arbitrary HTML and an optional filename title, returning
-    an application/pdf payload with a Content-Disposition header for direct download.
-- aid: api-snap:markdown
-  name: Markdown API
-  tags:
-  - Markdown
-  - HTML
-  - Content Conversion
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/markdown-render-example.json
-    type: Example
-  description: Convert Markdown content to HTML. Supports a styled mode that returns a full standalone HTML page with default
-    styling, or an unstyled mode that returns a JSON document with the raw HTML fragment for embedding in your own UI.
-- aid: api-snap:meta
-  name: URL Metadata API
-  tags:
-  - URL Metadata
-  - Open Graph
-  - Link Preview
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/meta-url-metadata-schema.json
-    type: JSONSchema
-  - url: json-structure/meta-url-metadata-structure.json
-    type: JSONStructure
-  - url: examples/meta-extract-example.json
-    type: Example
-  description: Extract URL metadata and Open Graph tags for any web page. Returns a structured JSON document with title, description,
-    image, site name, type, favicon, theme color, author, and published date for use in link previews and content cards.
-- aid: api-snap:hash
-  name: Hash API
-  tags:
-  - Hashing
-  - Cryptography
-  - Security
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/hash-hash-result-schema.json
-    type: JSONSchema
-  - url: json-structure/hash-hash-result-structure.json
-    type: JSONStructure
-  - url: examples/hash-string-example.json
-    type: Example
-  description: Compute cryptographic hashes of arbitrary text. Supports MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256, and
-    SHA3-512 algorithms with hex, base64, or base64url encodings. Available via either GET (query parameters) or POST (JSON
-    body).
-- aid: api-snap:jwt-decode
-  name: JWT Decode API
-  tags:
-  - JWT
-  - Tokens
-  - Security
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/jwt-decode-jwt-decoded-schema.json
-    type: JSONSchema
-  - url: json-structure/jwt-decode-jwt-decoded-structure.json
-    type: JSONStructure
-  - url: examples/jwt-decode-example.json
-    type: Example
-  description: Decode a JSON Web Token without verification, returning the header and payload as JSON along with computed
-    expiration metadata (expired flag, expiresAt, issuedAt). Useful for debugging tokens and inspecting claims during integration
-    work.
-- aid: api-snap:base64
-  name: Base64 API
-  tags:
-  - Base64
-  - Encoding
-  - Decoding
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/base64-base64-result-schema.json
-    type: JSONSchema
-  - url: json-structure/base64-base64-result-structure.json
-    type: JSONStructure
-  - url: examples/base64-encode-example.json
-    type: Example
-  description: Base64 encode or decode an arbitrary string. Supports a URL-safe variant for use in URLs and tokens. Accepts
-    a JSON request body specifying the action and returns the result with a confirmation of the action performed.
-- aid: api-snap:uuid
-  name: UUID API
-  tags:
-  - UUID
-  - Identifiers
-  - ID Generation
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/uuid-id-result-schema.json
-    type: JSONSchema
-  - url: json-structure/uuid-id-result-structure.json
-    type: JSONStructure
-  - url: examples/uuid-generate-example.json
-    type: Example
-  description: Generate unique identifiers in multiple formats including UUID v4, NanoID, short NanoID, hex, base64, numeric,
-    and timestamp-based IDs. Supports batch generation of up to 100 IDs per request and an optional prefix for typed IDs (e.g.
-    usr_, ord_).
-- aid: api-snap:color
-  name: Color API
-  tags:
-  - Color
-  - Color Conversion
-  - Design Utilities
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/color-color-conversion-schema.json
-    type: JSONSchema
-  - url: json-structure/color-color-conversion-structure.json
-    type: JSONStructure
-  - url: examples/color-convert-example.json
-    type: Example
-  description: Convert color values between hex, RGB, and HSL formats. Returns structured representations for each format
-    along with computed brightness (0-255) and a derived isDark boolean useful for choosing accessible foreground colors.
-- aid: api-snap:lorem
-  name: Lorem Ipsum API
-  tags:
-  - Lorem Ipsum
-  - Placeholder Text
-  - Content Generation
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: json-schema/lorem-lorem-text-schema.json
-    type: JSONSchema
-  - url: json-structure/lorem-lorem-text-structure.json
-    type: JSONStructure
-  - url: examples/lorem-generate-example.json
-    type: Example
-  description: Generate lorem ipsum placeholder text. Supports configurable paragraph and sentence counts (1-20 each) and
-    either plain text or HTML output for use in design mockups, prototypes, and tests.
-- aid: api-snap:placeholder
-  name: Placeholder Image API
-  tags:
-  - Placeholder Images
-  - SVG
-  - Design Utilities
-  humanURL: https://api-snap.com/
-  baseURL: https://api-snap.com/api
-  properties:
-  - url: https://api-snap.com/
-    type: Documentation
-  - url: openapi/api-snap-openapi.yml
-    type: OpenAPI
-  - url: examples/placeholder-generate-example.json
-    type: Example
-  description: Generate SVG placeholder images for design and prototyping. Supports configurable width and height up to 2000
-    pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the image.
+  - aid: api-snap:qr
+    name: QR Code API
+    tags:
+      - QR Codes
+      - Image Generation
+      - Encoding
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/qr-generate-example.json
+        type: Example
+    description: >-
+      Generate QR codes encoding any text or URL. Supports configurable size up to 1000 pixels, PNG or SVG output
+      formats, and custom foreground/background hex colors. Returns the encoded image directly with the appropriate
+      content type.
+  - aid: api-snap:screenshot
+    name: Screenshot API
+    tags:
+      - Screenshots
+      - Browser Automation
+      - Web Capture
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/screenshot-capture-example.json
+        type: Example
+    description: >-
+      Capture a webpage screenshot by URL. Configurable viewport width and height, output format (PNG or JPEG), and an
+      option to capture the full scrollable page. A managed alternative to running headless Chromium or Puppeteer.
+  - aid: api-snap:resize
+    name: Image Resize API
+    tags:
+      - Image Processing
+      - Image Resize
+      - Format Conversion
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/resize-image-example.json
+        type: Example
+    description: >-
+      Resize and convert images. Accepts a binary upload, base64 string, or remote URL. Supports PNG, JPEG, WebP, and
+      AVIF output, configurable quality, target width and height up to 4096 pixels, and standard fit modes (cover,
+      contain, fill, inside, outside).
+  - aid: api-snap:pdf
+    name: PDF API
+    tags:
+      - PDF
+      - Document Generation
+      - HTML to PDF
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/pdf-generate-example.json
+        type: Example
+    description: >-
+      Convert HTML content into a PDF document. Accepts arbitrary HTML and an optional filename title, returning an
+      application/pdf payload with a Content-Disposition header for direct download.
+  - aid: api-snap:markdown
+    name: Markdown API
+    tags:
+      - Markdown
+      - HTML
+      - Content Conversion
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/markdown-render-example.json
+        type: Example
+    description: >-
+      Convert Markdown content to HTML. Supports a styled mode that returns a full standalone HTML page with default
+      styling, or an unstyled mode that returns a JSON document with the raw HTML fragment for embedding in your own UI.
+  - aid: api-snap:meta
+    name: URL Metadata API
+    tags:
+      - URL Metadata
+      - Open Graph
+      - Link Preview
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/meta-url-metadata-schema.json
+        type: JSONSchema
+      - url: json-structure/meta-url-metadata-structure.json
+        type: JSONStructure
+      - url: examples/meta-extract-example.json
+        type: Example
+    description: >-
+      Extract URL metadata and Open Graph tags for any web page. Returns a structured JSON document with title,
+      description, image, site name, type, favicon, theme color, author, and published date for use in link previews and
+      content cards.
+  - aid: api-snap:hash
+    name: Hash API
+    tags:
+      - Hashing
+      - Cryptography
+      - Security
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/hash-hash-result-schema.json
+        type: JSONSchema
+      - url: json-structure/hash-hash-result-structure.json
+        type: JSONStructure
+      - url: examples/hash-string-example.json
+        type: Example
+    description: >-
+      Compute cryptographic hashes of arbitrary text. Supports MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256, and
+      SHA3-512 algorithms with hex, base64, or base64url encodings. Available via either GET (query parameters) or POST
+      (JSON body).
+  - aid: api-snap:jwt-decode
+    name: JWT Decode API
+    tags:
+      - JWT
+      - Tokens
+      - Security
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/jwt-decode-jwt-decoded-schema.json
+        type: JSONSchema
+      - url: json-structure/jwt-decode-jwt-decoded-structure.json
+        type: JSONStructure
+      - url: examples/jwt-decode-example.json
+        type: Example
+    description: >-
+      Decode a JSON Web Token without verification, returning the header and payload as JSON along with computed
+      expiration metadata (expired flag, expiresAt, issuedAt). Useful for debugging tokens and inspecting claims during
+      integration work.
+  - aid: api-snap:base64
+    name: Base64 API
+    tags:
+      - Base64
+      - Encoding
+      - Decoding
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/base64-base64-result-schema.json
+        type: JSONSchema
+      - url: json-structure/base64-base64-result-structure.json
+        type: JSONStructure
+      - url: examples/base64-encode-example.json
+        type: Example
+    description: >-
+      Base64 encode or decode an arbitrary string. Supports a URL-safe variant for use in URLs and tokens. Accepts a
+      JSON request body specifying the action and returns the result with a confirmation of the action performed.
+  - aid: api-snap:uuid
+    name: UUID API
+    tags:
+      - UUID
+      - Identifiers
+      - ID Generation
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/uuid-id-result-schema.json
+        type: JSONSchema
+      - url: json-structure/uuid-id-result-structure.json
+        type: JSONStructure
+      - url: examples/uuid-generate-example.json
+        type: Example
+    description: >-
+      Generate unique identifiers in multiple formats including UUID v4, NanoID, short NanoID, hex, base64, numeric, and
+      timestamp-based IDs. Supports batch generation of up to 100 IDs per request and an optional prefix for typed IDs
+      (e.g. usr_, ord_).
+  - aid: api-snap:color
+    name: Color API
+    tags:
+      - Color
+      - Color Conversion
+      - Design Utilities
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/color-color-conversion-schema.json
+        type: JSONSchema
+      - url: json-structure/color-color-conversion-structure.json
+        type: JSONStructure
+      - url: examples/color-convert-example.json
+        type: Example
+    description: >-
+      Convert color values between hex, RGB, and HSL formats. Returns structured representations for each format along
+      with computed brightness (0-255) and a derived isDark boolean useful for choosing accessible foreground colors.
+  - aid: api-snap:lorem
+    name: Lorem Ipsum API
+    tags:
+      - Lorem Ipsum
+      - Placeholder Text
+      - Content Generation
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: json-schema/lorem-lorem-text-schema.json
+        type: JSONSchema
+      - url: json-structure/lorem-lorem-text-structure.json
+        type: JSONStructure
+      - url: examples/lorem-generate-example.json
+        type: Example
+    description: >-
+      Generate lorem ipsum placeholder text. Supports configurable paragraph and sentence counts (1-20 each) and either
+      plain text or HTML output for use in design mockups, prototypes, and tests.
+  - aid: api-snap:placeholder
+    name: Placeholder Image API
+    tags:
+      - Placeholder Images
+      - SVG
+      - Design Utilities
+    humanURL: https://api-snap.com/
+    baseURL: https://api-snap.com/api
+    properties:
+      - url: https://api-snap.com/
+        type: Documentation
+      - url: openapi/api-snap-openapi.yml
+        type: OpenAPI
+      - url: examples/placeholder-generate-example.json
+        type: Example
+    description: >-
+      Generate SVG placeholder images for design and prototyping. Supports configurable width and height up to 2000
+      pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the
+      image.
 common:
-- type: Website
-  url: https://api-snap.com/
-- type: Documentation
-  url: https://api-snap.com/
-- type: APIReference
-  url: https://api-snap.com/openapi.json
-- type: OpenAPI
-  url: https://api-snap.com/openapi.json
-- type: Pricing
-  url: https://api-snap.com/pricing
-- type: Blog
-  url: https://api-snap.com/blog
-- type: GitHubOrganization
-  url: https://github.com/apisnap
-- type: Authentication
-  url: https://api-snap.com/
-  data:
-  - type: http
-    scheme: bearer
-    description: API key passed via Authorization header (Bearer snp_...) or via the api_key query parameter. Same key works
-      across all 13 endpoints.
-- type: Features
-  data:
-  - name: Unified API Key
-    description: A single Bearer API key (prefix snp_) authorizes all 13+ utility endpoints. No per-service signup or per-product
-      key.
-  - name: REST and JSON
-    description: Every endpoint follows a simple REST pattern under https://api-snap.com/api and returns either JSON or the
-      natural binary content type (image, PDF, SVG) for the resource.
-  - name: Predictable Rate Limit Headers
-    description: All responses include X-RateLimit-Limit and X-RateLimit-Remaining headers so clients can implement adaptive
-      throttling.
-  - name: GET and POST Variants
-    description: Stateless endpoints (hash, qr, uuid, color, meta, lorem, placeholder, screenshot) accept GET with query parameters;
-      mutating endpoints (resize, pdf, markdown, base64, jwt-decode) use POST with a JSON or multipart body.
-  - name: Single REST Service for Many Utilities
-    description: Replaces multiple small libraries and self-hosted micro-services for QR generation, screenshots, image resizing,
-      PDF rendering, hashing, and ID generation with one HTTP integration.
-  - name: Format Flexibility
-    description: Image and document endpoints accept multiple input formats (binary, base64, URL) and produce multiple output
-      formats (PNG, JPEG, WebP, AVIF, SVG, PDF, HTML).
-- type: UseCases
-  data:
-  - name: Dynamic QR Codes for Marketing
-    description: Generate trackable QR codes for campaigns, packaging, business cards, and events without integrating a QR
-      library.
-  - name: Link Preview Cards
-    description: Use the URL Metadata API to build rich link previews and bookmark cards in chat apps, CMS platforms, and
-      feed readers.
-  - name: Server-Side Screenshot Automation
-    description: Capture webpage thumbnails for SEO, social cards, monitoring dashboards, and visual regression checks without
-      operating headless Chromium.
-  - name: User-Generated Image Resizing
-    description: Resize and reformat user uploads on demand for avatars, thumbnails, and responsive images without running
-      an image processing service.
-  - name: HTML-to-PDF Document Generation
-    description: Render invoices, receipts, contracts, and reports as PDF directly from HTML templates.
-  - name: ID Generation for Microservices
-    description: Centralize UUID, NanoID, and prefixed-ID generation across services without bundling identifier libraries
-      into every codebase.
-  - name: Markdown-Driven CMS Rendering
-    description: Convert user or author Markdown into HTML on the fly for blogs, docs sites, and customer-facing UIs.
-  - name: Token Debugging and Inspection
-    description: Decode JWTs in admin tooling and developer utilities to inspect claims, issuers, and expiration without writing
-      per-language decoders.
-  - name: Design System and Mockup Tools
-    description: Generate placeholder images, lorem text, and color conversions inside design tooling, mockup builders, and
-      component playgrounds.
-- type: Integrations
-  data:
-  - name: HTTP Clients
-    description: Works with any HTTP client (curl, fetch, axios, requests) via the Authorization Bearer header or api_key
-      query parameter.
-  - name: Headless Browser Replacement
-    description: Drop-in replacement for self-hosted Puppeteer or Playwright services handling screenshot and PDF workloads.
-  - name: Image Processing Replacement
-    description: Drop-in replacement for libraries such as sharp or imagemagick when consumed as a managed service.
-- type: Plans
-  url: plans/api-snap-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/api-snap-rate-limits.yml
-- type: FinOps
-  url: finops/api-snap-finops.yml
-- url: json-ld/api-snap-context.jsonld
-  type: JSONLD
-- url: rules/api-snap-spectral-rules.yml
-  type: SpectralRules
-- url: vocabulary/api-snap-vocabulary.yaml
-  type: Vocabulary
+  - type: Website
+    url: https://api-snap.com/
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: APIReference
+    url: https://api-snap.com/openapi.json
+  - type: OpenAPI
+    url: https://api-snap.com/openapi.json
+  - type: Pricing
+    url: https://api-snap.com/pricing
+  - type: Blog
+    url: https://api-snap.com/blog
+  - type: GitHubOrganization
+    url: https://github.com/apisnap
+  - type: Authentication
+    url: https://api-snap.com/
+    data:
+      - type: http
+        scheme: bearer
+        description: >-
+          API key passed via Authorization header (Bearer snp_...) or via the api_key query parameter. Same key works
+          across all 13 endpoints.
+  - type: Features
+    data:
+      - name: Unified API Key
+        description: >-
+          A single Bearer API key (prefix snp_) authorizes all 13+ utility endpoints. No per-service signup or
+          per-product key.
+      - name: REST and JSON
+        description: >-
+          Every endpoint follows a simple REST pattern under https://api-snap.com/api and returns either JSON or the
+          natural binary content type (image, PDF, SVG) for the resource.
+      - name: Predictable Rate Limit Headers
+        description: >-
+          All responses include X-RateLimit-Limit and X-RateLimit-Remaining headers so clients can implement adaptive
+          throttling.
+      - name: GET and POST Variants
+        description: >-
+          Stateless endpoints (hash, qr, uuid, color, meta, lorem, placeholder, screenshot) accept GET with query
+          parameters; mutating endpoints (resize, pdf, markdown, base64, jwt-decode) use POST with a JSON or multipart
+          body.
+      - name: Single REST Service for Many Utilities
+        description: >-
+          Replaces multiple small libraries and self-hosted micro-services for QR generation, screenshots, image
+          resizing, PDF rendering, hashing, and ID generation with one HTTP integration.
+      - name: Format Flexibility
+        description: >-
+          Image and document endpoints accept multiple input formats (binary, base64, URL) and produce multiple output
+          formats (PNG, JPEG, WebP, AVIF, SVG, PDF, HTML).
+  - type: UseCases
+    data:
+      - name: Dynamic QR Codes for Marketing
+        description: >-
+          Generate trackable QR codes for campaigns, packaging, business cards, and events without integrating a QR
+          library.
+      - name: Link Preview Cards
+        description: >-
+          Use the URL Metadata API to build rich link previews and bookmark cards in chat apps, CMS platforms, and feed
+          readers.
+      - name: Server-Side Screenshot Automation
+        description: >-
+          Capture webpage thumbnails for SEO, social cards, monitoring dashboards, and visual regression checks without
+          operating headless Chromium.
+      - name: User-Generated Image Resizing
+        description: >-
+          Resize and reformat user uploads on demand for avatars, thumbnails, and responsive images without running an
+          image processing service.
+      - name: HTML-to-PDF Document Generation
+        description: Render invoices, receipts, contracts, and reports as PDF directly from HTML templates.
+      - name: ID Generation for Microservices
+        description: >-
+          Centralize UUID, NanoID, and prefixed-ID generation across services without bundling identifier libraries into
+          every codebase.
+      - name: Markdown-Driven CMS Rendering
+        description: Convert user or author Markdown into HTML on the fly for blogs, docs sites, and customer-facing UIs.
+      - name: Token Debugging and Inspection
+        description: >-
+          Decode JWTs in admin tooling and developer utilities to inspect claims, issuers, and expiration without
+          writing per-language decoders.
+      - name: Design System and Mockup Tools
+        description: >-
+          Generate placeholder images, lorem text, and color conversions inside design tooling, mockup builders, and
+          component playgrounds.
+  - type: Integrations
+    data:
+      - name: HTTP Clients
+        description: >-
+          Works with any HTTP client (curl, fetch, axios, requests) via the Authorization Bearer header or api_key query
+          parameter.
+      - name: Headless Browser Replacement
+        description: Drop-in replacement for self-hosted Puppeteer or Playwright services handling screenshot and PDF workloads.
+      - name: Image Processing Replacement
+        description: Drop-in replacement for libraries such as sharp or imagemagick when consumed as a managed service.
+  - type: Plans
+    url: plans/api-snap-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/api-snap-rate-limits.yml
+  - type: FinOps
+    url: finops/api-snap-finops.yml
+  - url: json-ld/api-snap-context.jsonld
+    type: JSONLD
+  - url: rules/api-snap-spectral-rules.yml
+    type: SpectralRules
+  - url: vocabulary/api-snap-vocabulary.yaml
+    type: Vocabulary
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
