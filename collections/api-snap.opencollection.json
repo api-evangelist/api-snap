@@ -1,0 +1,406 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Snap",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/qr",
+            "params": [
+              {
+                "name": "data",
+                "value": "https://example.com",
+                "type": "query",
+                "description": "The text or URL to encode in the QR code. Also accepted as `url`."
+              },
+              {
+                "name": "size",
+                "value": "300",
+                "type": "query",
+                "description": "Width/height of the QR code in pixels (max 1000)."
+              },
+              {
+                "name": "format",
+                "value": "png",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "dark",
+                "value": "#000000",
+                "type": "query",
+                "description": "Hex color for dark (foreground) modules."
+              },
+              {
+                "name": "light",
+                "value": "#ffffff",
+                "type": "query",
+                "description": "Hex color for light (background) modules."
+              }
+            ]
+          },
+          "docs": "Generate a QR code image for any text or URL. Returns PNG or SVG."
+        },
+        {
+          "info": {
+            "name": "Resize and Convert Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/resize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resize and/or convert images to PNG, WebP, JPEG, or AVIF. Accepts multipart form data (with an `image` file field) or a JSON body with a base64-encoded image or image URL."
+        },
+        {
+          "info": {
+            "name": "Generate Placeholder Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/placeholder",
+            "params": [
+              {
+                "name": "w",
+                "value": "300",
+                "type": "query",
+                "description": "Image width in pixels (1–2000)."
+              },
+              {
+                "name": "h",
+                "value": "200",
+                "type": "query",
+                "description": "Image height in pixels (1–2000)."
+              },
+              {
+                "name": "bg",
+                "value": "cccccc",
+                "type": "query",
+                "description": "Background color as a hex string without the `#` prefix."
+              },
+              {
+                "name": "fg",
+                "value": "666666",
+                "type": "query",
+                "description": "Text/foreground color as a hex string without the `#` prefix."
+              },
+              {
+                "name": "text",
+                "value": "Hello",
+                "type": "query",
+                "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`)."
+              }
+            ]
+          },
+          "docs": "Generate an SVG placeholder image of any size with customizable background color, text color, and label."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Browser",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Capture Webpage Screenshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/screenshot",
+            "params": [
+              {
+                "name": "url",
+                "value": "https://example.com",
+                "type": "query",
+                "description": "The URL of the webpage to screenshot."
+              },
+              {
+                "name": "width",
+                "value": "1280",
+                "type": "query",
+                "description": "Viewport width in pixels (max 1920)."
+              },
+              {
+                "name": "height",
+                "value": "720",
+                "type": "query",
+                "description": "Viewport height in pixels (max 1080)."
+              },
+              {
+                "name": "format",
+                "value": "png",
+                "type": "query",
+                "description": "Image output format."
+              },
+              {
+                "name": "full_page",
+                "value": "false",
+                "type": "query",
+                "description": "Capture the full scrollable page instead of only the viewport."
+              }
+            ]
+          },
+          "docs": "Capture a screenshot of any publicly accessible URL. Returns PNG or JPEG."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert HTML to PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/pdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert an HTML string to a downloadable PDF file."
+        },
+        {
+          "info": {
+            "name": "Convert Markdown to HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/markdown",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert a Markdown string to HTML. By default returns a fully styled HTML page; pass `styled: false` to get raw HTML fragment in a JSON response."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hash a String (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/hash",
+            "params": [
+              {
+                "name": "text",
+                "value": "Hello World",
+                "type": "query",
+                "description": "The string to hash."
+              },
+              {
+                "name": "algorithm",
+                "value": "sha256",
+                "type": "query",
+                "description": "Hash algorithm to use."
+              },
+              {
+                "name": "encoding",
+                "value": "hex",
+                "type": "query",
+                "description": "Output encoding."
+              }
+            ]
+          },
+          "docs": "Compute a cryptographic hash of a string using the specified algorithm."
+        },
+        {
+          "info": {
+            "name": "Hash a String (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/hash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute a cryptographic hash of a string via JSON body. Useful for hashing large inputs."
+        },
+        {
+          "info": {
+            "name": "Decode a JWT Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/jwt-decode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decode a JSON Web Token (JWT) and return its header, payload, and human-readable expiry information. Does not verify the signature."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate UUIDs and Unique IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/uuid",
+            "params": [
+              {
+                "name": "format",
+                "value": "uuid",
+                "type": "query",
+                "description": "ID format to generate."
+              },
+              {
+                "name": "count",
+                "value": "1",
+                "type": "query",
+                "description": "Number of IDs to generate (1–100)."
+              },
+              {
+                "name": "prefix",
+                "value": "user_",
+                "type": "query",
+                "description": "Optional string prefix to prepend to each generated ID."
+              }
+            ]
+          },
+          "docs": "Generate one or more unique identifiers in various formats: UUID v4, nanoid, hex token, base64, numeric, or timestamp-prefixed."
+        },
+        {
+          "info": {
+            "name": "Extract URL Metadata and Open Graph Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/meta",
+            "params": [
+              {
+                "name": "url",
+                "value": "https://example.com",
+                "type": "query",
+                "description": "The URL to extract metadata from."
+              }
+            ]
+          },
+          "docs": "Fetch a URL and extract its title, description, Open Graph image, favicon, and other metadata."
+        },
+        {
+          "info": {
+            "name": "Base64 Encode or Decode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/base64",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Encode a string to Base64 or decode a Base64 string back to plain text. Supports standard and URL-safe Base64."
+        },
+        {
+          "info": {
+            "name": "Convert Color Formats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/color",
+            "params": [
+              {
+                "name": "color",
+                "value": "#ff0000",
+                "type": "query",
+                "description": "Color value to convert. Accepts hex (e.g. `#ff0000` or `ff0000`), RGB (e.g. `rgb(255,0,0)`), or HSL (e.g. `hsl(0,100%,50%)`)."
+              }
+            ]
+          },
+          "docs": "Convert a color between hex, RGB, HSL and get metadata like brightness and isDark. Accepts hex, rgb(), or hsl() input."
+        },
+        {
+          "info": {
+            "name": "Generate Lorem Ipsum Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/lorem",
+            "params": [
+              {
+                "name": "paragraphs",
+                "value": "3",
+                "type": "query",
+                "description": "Number of paragraphs to generate (1–20)."
+              },
+              {
+                "name": "sentences",
+                "value": "5",
+                "type": "query",
+                "description": "Number of sentences per paragraph (1–20)."
+              },
+              {
+                "name": "format",
+                "value": "text",
+                "type": "query",
+                "description": "Output format. `text` returns JSON; `html` returns `<p>` tags as HTML."
+              }
+            ]
+          },
+          "docs": "Generate placeholder lorem ipsum text as plain JSON or an HTML snippet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
