@@ -2,7 +2,7 @@ aid: api-snap
 url: https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/apis.yml
 name: API Snap
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 description: >-
   API Snap is a developer utility platform that consolidates 13+ commonly needed REST APIs into a single, unified
   service with one API key. The platform provides QR code generation, screenshot capture, image resize and conversion,
