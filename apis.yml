@@ -302,6 +302,10 @@ apis:
       pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the
       image.
 common:
+  - type: DomainSecurity
+    url: security/api-snap-domain-security.yml
+  - type: Authentication
+    url: authentication/api-snap-authentication.yml
   - type: Website
     url: https://api-snap.com/
   - type: Documentation

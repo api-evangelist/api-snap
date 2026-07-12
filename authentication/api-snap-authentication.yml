@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/api-snap-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer
+    <key>` header or as `?api_key=<key>` query parameter.'
+  sources:
+  - openapi/api-snap-openapi.yml
