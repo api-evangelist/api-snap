@@ -1,21 +1,24 @@
+# api-snap — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on api-snap.com
+#   - query-params-casing: snake @ 100% (n=26)
+#   - operationid-casing: camel @ 100% (n=14)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: Error
+#   - operation-documents-400: 86% adherence
+#   - operation-documents-401: 100% adherence
+#   - operation-documents-429: 100% adherence
+#   - pagination params observed: ['count', 'size']
+#   - merge: kept 37 existing, added 5 measured, upgraded 0
+#   - added: servers-expected-domain, query-params-casing, error-schema-defined, operation-documents-400, no-empty-descriptions
 extends:
-  - [spectral:oas, recommended]
-
-# Spectral ruleset for API Snap (https://api-snap.com/)
-# Enforces the conventions observed across the api-snap-openapi.yml spec:
-#   - OpenAPI 3.0.3
-#   - Single base server: https://api-snap.com
-#   - All paths under /api with kebab-case (jwt-decode)
-#   - camelCase operationIds with verb prefixes (generate*, capture*, decode*, convert*, extract*, hash*, resize*)
-#   - PascalCase tags (Images, Browser, Documents, Security, Utilities)
-#   - snake_case query parameters (full_page) and camelCase JSON body properties (urlSafe, expiresAt)
-#   - Bearer auth via Authorization header (snp_ prefix) with api_key query alias
-#   - Standard error response set: 400, 401, 429
+  - spectral:oas
 rules:
-
-  # ----------------------------------------------------------------
-  # INFO / METADATA
-  # ----------------------------------------------------------------
   info-title-required:
     description: Spec must declare an info.title.
     given: $.info
@@ -44,14 +47,10 @@ rules:
     given: $.info.contact
     severity: warn
     then:
-      - field: name
-        function: truthy
-      - field: url
-        function: truthy
-
-  # ----------------------------------------------------------------
-  # OPENAPI VERSION
-  # ----------------------------------------------------------------
+    - field: name
+      function: truthy
+    - field: url
+      function: truthy
   openapi-version-3-0-3:
     description: API Snap uses OpenAPI 3.0.3.
     given: $.openapi
@@ -60,10 +59,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^3\.0\.\d+$
-
-  # ----------------------------------------------------------------
-  # SERVERS
-  # ----------------------------------------------------------------
   servers-defined:
     description: At least one server must be defined.
     given: $
@@ -87,10 +82,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^https://api-snap\.com
-
-  # ----------------------------------------------------------------
-  # PATHS - NAMING CONVENTIONS
-  # ----------------------------------------------------------------
   paths-api-prefix:
     description: All paths must be prefixed with /api/.
     given: $.paths
@@ -118,10 +109,6 @@ rules:
       function: pattern
       functionOptions:
         notMatch: .+/$
-
-  # ----------------------------------------------------------------
-  # OPERATIONS
-  # ----------------------------------------------------------------
   operation-summary-required:
     description: Every operation must have a summary in Title Case.
     given: $.paths[*][get,post,put,patch,delete]
@@ -152,7 +139,8 @@ rules:
       functionOptions:
         match: ^[a-z][a-zA-Z0-9]+$
   operation-id-verb-prefix:
-    description: operationId should start with a recognized verb (generate, capture, convert, hash, resize, decode, extract, base64).
+    description: operationId should start with a recognized verb (generate, capture, convert, hash, resize,
+      decode, extract, base64).
     given: $.paths[*][get,post,put,patch,delete].operationId
     severity: info
     then:
@@ -168,10 +156,6 @@ rules:
       function: length
       functionOptions:
         min: 1
-
-  # ----------------------------------------------------------------
-  # TAGS
-  # ----------------------------------------------------------------
   tags-pascal-case:
     description: Tags must use PascalCase (e.g. Images, Browser, Documents, Security, Utilities).
     given: $.paths[*][get,post,put,patch,delete].tags[*]
@@ -188,15 +172,11 @@ rules:
       function: enumeration
       functionOptions:
         values:
-          - Images
-          - Browser
-          - Documents
-          - Security
-          - Utilities
-
-  # ----------------------------------------------------------------
-  # PARAMETERS
-  # ----------------------------------------------------------------
+        - Images
+        - Browser
+        - Documents
+        - Security
+        - Utilities
   parameter-description-required:
     description: Every parameter must have a description.
     given: $.paths[*][get,post,put,patch,delete].parameters[*]
@@ -218,10 +198,6 @@ rules:
     severity: info
     then:
       function: truthy
-
-  # ----------------------------------------------------------------
-  # REQUEST BODIES
-  # ----------------------------------------------------------------
   request-body-content-required:
     description: Request bodies must declare a content map.
     given: $.paths[*][post,put,patch].requestBody
@@ -238,10 +214,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^(application/json|multipart/form-data)$
-
-  # ----------------------------------------------------------------
-  # RESPONSES
-  # ----------------------------------------------------------------
   response-200-required:
     description: Every operation must declare a 200 success response.
     given: $.paths[*][get,post,put,patch,delete].responses
@@ -270,10 +242,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ----------------------------------------------------------------
-  # SCHEMAS - PROPERTY NAMING
-  # ----------------------------------------------------------------
   schema-camel-case-properties:
     description: JSON body and response properties use camelCase (urlSafe, expiresAt).
     given: $.components.schemas[*].properties
@@ -292,15 +260,16 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: [type]
-            - required: [$ref]
-            - required: [oneOf]
-            - required: [anyOf]
-            - required: [allOf]
-
-  # ----------------------------------------------------------------
-  # SECURITY
-  # ----------------------------------------------------------------
+          - required:
+            - type
+          - required:
+            - $ref
+          - required:
+            - oneOf
+          - required:
+            - anyOf
+          - required:
+            - allOf
   security-schemes-defined:
     description: components.securitySchemes must define at least one scheme.
     given: $.components
@@ -322,10 +291,6 @@ rules:
     then:
       field: security
       function: truthy
-
-  # ----------------------------------------------------------------
-  # HTTP METHOD CONVENTIONS
-  # ----------------------------------------------------------------
   get-no-request-body:
     description: GET operations must not declare a requestBody.
     given: $.paths[*].get
@@ -340,10 +305,6 @@ rules:
     then:
       field: requestBody
       function: truthy
-
-  # ----------------------------------------------------------------
-  # GENERAL QUALITY
-  # ----------------------------------------------------------------
   examples-encouraged:
     description: Operations should include at least one example for response or request.
     given: $.paths[*][get,post,put,patch,delete].responses[*].content[*]
@@ -353,12 +314,51 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: [example]
-            - required: [examples]
+          - required:
+            - example
+          - required:
+            - examples
   microcks-extension-encouraged:
     description: Operations should include x-microcks-operation for mock-server compatibility.
     given: $.paths[*][get,post,put,patch,delete]
     severity: info
     then:
       field: x-microcks-operation
+      function: truthy
+  servers-expected-domain:
+    description: Server URLs should be on the api-snap.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: api\-snap\.com
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (Error) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: Error
+      function: truthy
+  operation-documents-400:
+    description: Operations should document a 400 response (documented on 86% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '400'
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
