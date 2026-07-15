@@ -302,6 +302,8 @@ apis:
       pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the
       image.
 common:
+  - type: AgenticAccess
+    url: agentic-access/api-snap-agentic-access.yml
   - type: DomainSecurity
     url: security/api-snap-domain-security.yml
   - type: Authentication
