@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: API Snap Browser Security API
+  version: 1.0.0
+  description: API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.
+  contact:
+    name: API Snap Support
+    url: https://api-snap.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api-snap.com
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Security
+  description: Cryptographic hashing and JWT decoding
+paths:
+  /api/hash:
+    get:
+      operationId: hashStringGet
+      summary: Hash a String (GET)
+      description: Compute a cryptographic hash of a string using the specified algorithm.
+      tags:
+      - Security
+      parameters:
+      - name: text
+        in: query
+        description: The string to hash.
+        required: true
+        schema:
+          type: string
+        example: Hello World
+      - name: algorithm
+        in: query
+        description: Hash algorithm to use.
+        required: false
+        schema:
+          type: string
+          enum:
+          - md5
+          - sha1
+          - sha256
+          - sha512
+          - sha384
+          - sha3-256
+          - sha3-512
+          default: sha256
+        example: sha256
+      - name: encoding
+        in: query
+        description: Output encoding.
+        required: false
+        schema:
+          type: string
+          enum:
+          - hex
+          - base64
+          - base64url
+          default: hex
+        example: hex
+      responses:
+        '200':
+          description: Hash result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+                    description: The computed hash value.
+                  algorithm:
+                    type: string
+                  encoding:
+                    type: string
+              example:
+                hash: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
+                algorithm: sha256
+                encoding: hex
+        '400':
+          description: Missing text or invalid algorithm/encoding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                HashStringGet400Example:
+                  summary: Default hashStringGet 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: hashStringPost
+      summary: Hash a String (POST)
+      description: Compute a cryptographic hash of a string via JSON body. Useful for hashing large inputs.
+      tags:
+      - Security
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - text
+              properties:
+                text:
+                  type: string
+                  description: The string to hash.
+                algorithm:
+                  type: string
+                  enum:
+                  - md5
+                  - sha1
+                  - sha256
+                  - sha512
+                  - sha384
+                  - sha3-256
+                  - sha3-512
+                  default: sha256
+                encoding:
+                  type: string
+                  enum:
+                  - hex
+                  - base64
+                  - base64url
+                  default: hex
+            examples:
+              HashStringPostRequestExample:
+                summary: Default hashStringPost request
+                x-microcks-default: true
+                value:
+                  text: Sample text
+                  algorithm: sha256
+                  encoding: hex
+      responses:
+        '200':
+          description: Hash result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+                  algorithm:
+                    type: string
+                  encoding:
+                    type: string
+              examples:
+                HashStringPost200Example:
+                  summary: Default hashStringPost 200 response
+                  x-microcks-default: true
+                  value:
+                    hash: example
+                    algorithm: sha256
+                    encoding: hex
+        '400':
+          description: Missing text or invalid algorithm
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                HashStringPost400Example:
+                  summary: Default hashStringPost 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/jwt-decode:
+    post:
+      operationId: decodeJwt
+      summary: Decode a JWT Token
+      description: Decode a JSON Web Token (JWT) and return its header, payload, and human-readable expiry information. Does not verify the signature.
+      tags:
+      - Security
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+                  description: The JWT string (header.payload.signature).
+            example:
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      responses:
+        '200':
+          description: Decoded JWT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    description: Decoded JWT header.
+                    additionalProperties: true
+                  payload:
+                    type: object
+                    description: Decoded JWT payload.
+                    additionalProperties: true
+                  expired:
+                    type: boolean
+                    description: Whether the token has expired (only present if `exp` claim exists).
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 expiry time (only present if `exp` claim exists).
+                  issuedAt:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 issued-at time (only present if `iat` claim exists).
+              examples:
+                DecodeJwt200Example:
+                  summary: Default decodeJwt 200 response
+                  x-microcks-default: true
+                  value:
+                    header: example
+                    payload: example
+                    expired: false
+                    expiresAt: example
+                    issuedAt: example
+        '400':
+          description: Missing token or invalid JWT format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                DecodeJwt400Example:
+                  summary: Default decodeJwt 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: example
+      required:
+      - error
+    RateLimitError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Rate limit exceeded
+        usage:
+          type: integer
+          description: Number of API calls used this month
+          example: 1
+        limit:
+          type: integer
+          description: Monthly call limit for your plan
+          example: 1
+        upgrade_url:
+          type: string
+          format: uri
+          description: URL to upgrade your plan
+          example: https://example.com
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer <key>` header or as `?api_key=<key>` query parameter.'

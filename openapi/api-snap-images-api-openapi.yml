@@ -1,0 +1,380 @@
+openapi: 3.0.3
+info:
+  title: API Snap Browser Images API
+  version: 1.0.0
+  description: API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.
+  contact:
+    name: API Snap Support
+    url: https://api-snap.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api-snap.com
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Images
+  description: QR codes, image resizing, and placeholder image generation
+paths:
+  /api/qr:
+    get:
+      operationId: generateQrCode
+      summary: Generate QR Code
+      description: Generate a QR code image for any text or URL. Returns PNG or SVG.
+      tags:
+      - Images
+      parameters:
+      - name: data
+        in: query
+        description: The text or URL to encode in the QR code. Also accepted as `url`.
+        required: true
+        schema:
+          type: string
+        example: https://example.com
+      - name: size
+        in: query
+        description: Width/height of the QR code in pixels (max 1000).
+        required: false
+        schema:
+          type: integer
+          default: 300
+          maximum: 1000
+          minimum: 1
+        example: 300
+      - name: format
+        in: query
+        description: Output format.
+        required: false
+        schema:
+          type: string
+          enum:
+          - png
+          - svg
+          default: png
+        example: png
+      - name: dark
+        in: query
+        description: Hex color for dark (foreground) modules.
+        required: false
+        schema:
+          type: string
+          default: '#000000'
+        example: '#000000'
+      - name: light
+        in: query
+        description: Hex color for light (background) modules.
+        required: false
+        schema:
+          type: string
+          default: '#ffffff'
+        example: '#ffffff'
+      responses:
+        '200':
+          description: QR code image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/svg+xml:
+              schema:
+                type: string
+        '400':
+          description: Missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GenerateQrCode400Example:
+                  summary: Default generateQrCode 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/resize:
+    post:
+      operationId: resizeImage
+      summary: Resize and Convert Images
+      description: Resize and/or convert images to PNG, WebP, JPEG, or AVIF. Accepts multipart form data (with an `image` file field) or a JSON body with a base64-encoded image or image URL.
+      tags:
+      - Images
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: The image file to resize.
+                width:
+                  type: integer
+                  description: Target width in pixels (max 4096).
+                  maximum: 4096
+                height:
+                  type: integer
+                  description: Target height in pixels (max 4096).
+                  maximum: 4096
+                format:
+                  type: string
+                  enum:
+                  - png
+                  - jpeg
+                  - jpg
+                  - webp
+                  - avif
+                  default: png
+                quality:
+                  type: integer
+                  description: Output quality (1–100). Applies to JPEG, WebP, AVIF.
+                  minimum: 1
+                  maximum: 100
+                  default: 80
+                fit:
+                  type: string
+                  enum:
+                  - cover
+                  - contain
+                  - fill
+                  - inside
+                  - outside
+                  default: cover
+                  description: How to fit the image within the target dimensions.
+              required:
+              - image
+            examples:
+              ResizeImageRequestExample:
+                summary: Default resizeImage request
+                x-microcks-default: true
+                value:
+                  image: iVBORw0KGgoAAAANSUhEUgAA...
+                  width: 300
+                  height: 200
+                  format: png
+                  quality: 80
+                  fit: cover
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  description: Base64-encoded image data.
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the image to fetch and resize.
+                width:
+                  type: integer
+                  maximum: 4096
+                height:
+                  type: integer
+                  maximum: 4096
+                format:
+                  type: string
+                  enum:
+                  - png
+                  - jpeg
+                  - jpg
+                  - webp
+                  - avif
+                  default: png
+                quality:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                  default: 80
+                fit:
+                  type: string
+                  enum:
+                  - cover
+                  - contain
+                  - fill
+                  - inside
+                  - outside
+                  default: cover
+            examples:
+              ResizeImageRequestExample:
+                summary: Default resizeImage request
+                x-microcks-default: true
+                value: {}
+      responses:
+        '200':
+          description: Resized image binary
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/webp:
+              schema:
+                type: string
+                format: binary
+            image/avif:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Missing image input or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ResizeImage400Example:
+                  summary: Default resizeImage 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/placeholder:
+    get:
+      operationId: generatePlaceholderImage
+      summary: Generate Placeholder Image
+      description: Generate an SVG placeholder image of any size with customizable background color, text color, and label.
+      tags:
+      - Images
+      parameters:
+      - name: w
+        in: query
+        description: Image width in pixels (1–2000).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 2000
+          default: 300
+        example: 300
+      - name: h
+        in: query
+        description: Image height in pixels (1–2000).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 2000
+          default: 200
+        example: 200
+      - name: bg
+        in: query
+        description: Background color as a hex string without the `#` prefix.
+        required: false
+        schema:
+          type: string
+          default: cccccc
+        example: cccccc
+      - name: fg
+        in: query
+        description: Text/foreground color as a hex string without the `#` prefix.
+        required: false
+        schema:
+          type: string
+          default: '666666'
+        example: '666666'
+      - name: text
+        in: query
+        description: Label text to display on the image. Defaults to the dimensions (e.g. `300x200`).
+        required: false
+        schema:
+          type: string
+        example: Hello
+      responses:
+        '200':
+          description: SVG placeholder image
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+              description: public, max-age=31536000, immutable
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: example
+      required:
+      - error
+    RateLimitError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Rate limit exceeded
+        usage:
+          type: integer
+          description: Number of API calls used this month
+          example: 1
+        limit:
+          type: integer
+          description: Monthly call limit for your plan
+          example: 1
+        upgrade_url:
+          type: string
+          format: uri
+          description: URL to upgrade your plan
+          example: https://example.com
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer <key>` header or as `?api_key=<key>` query parameter.'

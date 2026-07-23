@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: API Snap Browser Documents API
+  version: 1.0.0
+  description: API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.
+  contact:
+    name: API Snap Support
+    url: https://api-snap.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api-snap.com
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Documents
+  description: Document generation and conversion (PDF, Markdown)
+paths:
+  /api/pdf:
+    post:
+      operationId: htmlToPdf
+      summary: Convert HTML to PDF
+      description: Convert an HTML string to a downloadable PDF file.
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - html
+              properties:
+                html:
+                  type: string
+                  description: HTML content to convert to PDF.
+                title:
+                  type: string
+                  description: Document title, used as the PDF filename.
+                  default: Document
+            example:
+              html: <h1>Hello World</h1><p>This is my PDF content.</p>
+              title: My Document
+      responses:
+        '200':
+          description: PDF file
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              description: attachment; filename="<title>.pdf"
+        '400':
+          description: Missing html field
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                HtmlToPdf400Example:
+                  summary: Default htmlToPdf 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/markdown:
+    post:
+      operationId: markdownToHtml
+      summary: Convert Markdown to HTML
+      description: 'Convert a Markdown string to HTML. By default returns a fully styled HTML page; pass `styled: false` to get raw HTML fragment in a JSON response.'
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - markdown
+              properties:
+                markdown:
+                  type: string
+                  description: Markdown content to convert.
+                styled:
+                  type: boolean
+                  default: true
+                  description: If true (default), returns a full HTML page with CSS styling. If false, returns a JSON object with the raw HTML fragment.
+            examples:
+              styled:
+                value:
+                  markdown: '# Hello
+
+
+                    This is **bold** text.'
+                  styled: true
+              raw:
+                value:
+                  markdown: '# Hello
+
+
+                    This is **bold** text.'
+                  styled: false
+      responses:
+        '200':
+          description: Converted HTML. Returns a full HTML page when `styled` is true, or a JSON object with `html` key when `styled` is false.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  html:
+                    type: string
+              examples:
+                MarkdownToHtml200Example:
+                  summary: Default markdownToHtml 200 response
+                  x-microcks-default: true
+                  value:
+                    html: '<h1>Invoice</h1><p>Total: $100.00</p>'
+        '400':
+          description: Missing markdown field
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                MarkdownToHtml400Example:
+                  summary: Default markdownToHtml 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: example
+      required:
+      - error
+    RateLimitError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Rate limit exceeded
+        usage:
+          type: integer
+          description: Number of API calls used this month
+          example: 1
+        limit:
+          type: integer
+          description: Monthly call limit for your plan
+          example: 1
+        upgrade_url:
+          type: string
+          format: uri
+          description: URL to upgrade your plan
+          example: https://example.com
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer <key>` header or as `?api_key=<key>` query parameter.'

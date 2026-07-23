@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: API Snap Browser API
+  version: 1.0.0
+  description: API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.
+  contact:
+    name: API Snap Support
+    url: https://api-snap.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api-snap.com
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Browser
+  description: Headless browser operations like screenshot capture
+paths:
+  /api/screenshot:
+    get:
+      operationId: captureScreenshot
+      summary: Capture Webpage Screenshot
+      description: Capture a screenshot of any publicly accessible URL. Returns PNG or JPEG.
+      tags:
+      - Browser
+      parameters:
+      - name: url
+        in: query
+        description: The URL of the webpage to screenshot.
+        required: true
+        schema:
+          type: string
+          format: uri
+        example: https://example.com
+      - name: width
+        in: query
+        description: Viewport width in pixels (max 1920).
+        required: false
+        schema:
+          type: integer
+          default: 1280
+          maximum: 1920
+          minimum: 1
+        example: 1280
+      - name: height
+        in: query
+        description: Viewport height in pixels (max 1080).
+        required: false
+        schema:
+          type: integer
+          default: 720
+          maximum: 1080
+          minimum: 1
+        example: 720
+      - name: format
+        in: query
+        description: Image output format.
+        required: false
+        schema:
+          type: string
+          enum:
+          - png
+          - jpeg
+          default: png
+        example: png
+      - name: full_page
+        in: query
+        description: Capture the full scrollable page instead of only the viewport.
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: false
+      responses:
+        '200':
+          description: Screenshot image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Missing or invalid URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CaptureScreenshot400Example:
+                  summary: Default captureScreenshot 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: example
+      required:
+      - error
+    RateLimitError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Rate limit exceeded
+        usage:
+          type: integer
+          description: Number of API calls used this month
+          example: 1
+        limit:
+          type: integer
+          description: Monthly call limit for your plan
+          example: 1
+        upgrade_url:
+          type: string
+          format: uri
+          description: URL to upgrade your plan
+          example: https://example.com
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer <key>` header or as `?api_key=<key>` query parameter.'

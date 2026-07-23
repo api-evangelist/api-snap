@@ -1,0 +1,505 @@
+openapi: 3.0.3
+info:
+  title: API Snap Browser Utilities API
+  version: 1.0.0
+  description: API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.
+  contact:
+    name: API Snap Support
+    url: https://api-snap.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api-snap.com
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Utilities
+  description: General-purpose developer utilities
+paths:
+  /api/uuid:
+    get:
+      operationId: generateId
+      summary: Generate UUIDs and Unique IDs
+      description: 'Generate one or more unique identifiers in various formats: UUID v4, nanoid, hex token, base64, numeric, or timestamp-prefixed.'
+      tags:
+      - Utilities
+      parameters:
+      - name: format
+        in: query
+        description: ID format to generate.
+        required: false
+        schema:
+          type: string
+          enum:
+          - uuid
+          - v4
+          - nanoid
+          - nanoid-short
+          - hex
+          - base64
+          - numeric
+          - timestamp
+          default: uuid
+        example: uuid
+      - name: count
+        in: query
+        description: Number of IDs to generate (1–100).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 1
+        example: 1
+      - name: prefix
+        in: query
+        description: Optional string prefix to prepend to each generated ID.
+        required: false
+        schema:
+          type: string
+        example: user_
+      responses:
+        '200':
+          description: Generated ID(s). Returns `id` (string) when count=1, or `ids` (array) when count>1.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Single generated ID.
+                - type: object
+                  properties:
+                    ids:
+                      type: array
+                      items:
+                        type: string
+                      description: Array of generated IDs.
+              examples:
+                single:
+                  value:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                multiple:
+                  value:
+                    ids:
+                    - 550e8400-e29b-41d4-a716-446655440000
+                    - 7b3d479c-12f1-4a3e-8c5b-123456789abc
+        '400':
+          description: Invalid format parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GenerateId400Example:
+                  summary: Default generateId 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/meta:
+    get:
+      operationId: extractUrlMetadata
+      summary: Extract URL Metadata and Open Graph Tags
+      description: Fetch a URL and extract its title, description, Open Graph image, favicon, and other metadata.
+      tags:
+      - Utilities
+      parameters:
+      - name: url
+        in: query
+        description: The URL to extract metadata from.
+        required: true
+        schema:
+          type: string
+          format: uri
+        example: https://example.com
+      responses:
+        '200':
+          description: Extracted metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+                    nullable: true
+                  description:
+                    type: string
+                    nullable: true
+                  image:
+                    type: string
+                    format: uri
+                    nullable: true
+                  siteName:
+                    type: string
+                    nullable: true
+                  type:
+                    type: string
+                    nullable: true
+                  favicon:
+                    type: string
+                    format: uri
+                    nullable: true
+                  themeColor:
+                    type: string
+                    nullable: true
+                  author:
+                    type: string
+                    nullable: true
+                  published:
+                    type: string
+                    format: date-time
+                    nullable: true
+              examples:
+                ExtractUrlMetadata200Example:
+                  summary: Default extractUrlMetadata 200 response
+                  x-microcks-default: true
+                  value:
+                    url: https://example.com
+                    title: Document
+                    description: example
+                    image: iVBORw0KGgoAAAANSUhEUgAA...
+                    siteName: example
+                    type: example
+                    favicon: example
+                    themeColor: example
+                    author: example
+                    published: example
+        '400':
+          description: Missing or invalid URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ExtractUrlMetadata400Example:
+                  summary: Default extractUrlMetadata 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/base64:
+    post:
+      operationId: base64EncodeDecode
+      summary: Base64 Encode or Decode
+      description: Encode a string to Base64 or decode a Base64 string back to plain text. Supports standard and URL-safe Base64.
+      tags:
+      - Utilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - input
+              properties:
+                input:
+                  type: string
+                  description: The string to encode or the Base64 string to decode.
+                action:
+                  type: string
+                  enum:
+                  - encode
+                  - decode
+                  default: encode
+                  description: Whether to encode or decode.
+                urlSafe:
+                  type: boolean
+                  default: false
+                  description: Use URL-safe Base64 alphabet (base64url) instead of standard Base64.
+            examples:
+              encode:
+                value:
+                  input: Hello, World!
+                  action: encode
+              decode:
+                value:
+                  input: SGVsbG8sIFdvcmxkIQ==
+                  action: decode
+      responses:
+        '200':
+          description: Encoded or decoded result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  action:
+                    type: string
+                    enum:
+                    - encode
+                    - decode
+              examples:
+                Base64EncodeDecode200Example:
+                  summary: Default base64EncodeDecode 200 response
+                  x-microcks-default: true
+                  value:
+                    result: example
+                    action: encode
+        '400':
+          description: Missing input or invalid base64 data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Base64EncodeDecode400Example:
+                  summary: Default base64EncodeDecode 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/color:
+    get:
+      operationId: convertColor
+      summary: Convert Color Formats
+      description: Convert a color between hex, RGB, HSL and get metadata like brightness and isDark. Accepts hex, rgb(), or hsl() input.
+      tags:
+      - Utilities
+      parameters:
+      - name: color
+        in: query
+        description: Color value to convert. Accepts hex (e.g. `#ff0000` or `ff0000`), RGB (e.g. `rgb(255,0,0)`), or HSL (e.g. `hsl(0,100%,50%)`).
+        required: true
+        schema:
+          type: string
+        example: '#ff0000'
+      responses:
+        '200':
+          description: Color in all supported formats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hex:
+                    type: string
+                    example: '#ff0000'
+                  rgb:
+                    type: object
+                    properties:
+                      r:
+                        type: integer
+                      g:
+                        type: integer
+                      b:
+                        type: integer
+                  rgbString:
+                    type: string
+                    example: rgb(255, 0, 0)
+                  hsl:
+                    type: object
+                    properties:
+                      h:
+                        type: integer
+                      s:
+                        type: integer
+                      l:
+                        type: integer
+                  hslString:
+                    type: string
+                    example: hsl(0, 100%, 50%)
+                  rgba:
+                    type: string
+                    example: rgba(255, 0, 0, 1)
+                  brightness:
+                    type: integer
+                    description: Perceived brightness (0–255).
+                  isDark:
+                    type: boolean
+                    description: True if the color is perceived as dark.
+              examples:
+                ConvertColor200Example:
+                  summary: Default convertColor 200 response
+                  x-microcks-default: true
+                  value:
+                    hex: example
+                    rgb: example
+                    rgbString: example
+                    hsl: example
+                    hslString: example
+                    rgba: example
+                    brightness: 1
+                    isDark: false
+        '400':
+          description: Missing color parameter or unsupported format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ConvertColor400Example:
+                  summary: Default convertColor 400 response
+                  x-microcks-default: true
+                  value:
+                    error: Bad request
+                    message: Invalid parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/lorem:
+    get:
+      operationId: generateLoremIpsum
+      summary: Generate Lorem Ipsum Text
+      description: Generate placeholder lorem ipsum text as plain JSON or an HTML snippet.
+      tags:
+      - Utilities
+      parameters:
+      - name: paragraphs
+        in: query
+        description: Number of paragraphs to generate (1–20).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 3
+        example: 3
+      - name: sentences
+        in: query
+        description: Number of sentences per paragraph (1–20).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+        example: 5
+      - name: format
+        in: query
+        description: Output format. `text` returns JSON; `html` returns `<p>` tags as HTML.
+        required: false
+        schema:
+          type: string
+          enum:
+          - text
+          - html
+          default: text
+        example: text
+      responses:
+        '200':
+          description: Generated lorem ipsum content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    description: All paragraphs joined by double newlines.
+                  paragraphs:
+                    type: array
+                    items:
+                      type: string
+                    description: Array of individual paragraph strings.
+              examples:
+                GenerateLoremIpsum200Example:
+                  summary: Default generateLoremIpsum 200 response
+                  x-microcks-default: true
+                  value:
+                    text: Sample text
+                    paragraphs: 3
+            text/html:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: example
+      required:
+      - error
+    RateLimitError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Rate limit exceeded
+        usage:
+          type: integer
+          description: Number of API calls used this month
+          example: 1
+        limit:
+          type: integer
+          description: Monthly call limit for your plan
+          example: 1
+        upgrade_url:
+          type: string
+          format: uri
+          description: URL to upgrade your plan
+          example: https://example.com
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key obtained from your API Snap dashboard. Pass as `Authorization: Bearer <key>` header or as `?api_key=<key>` query parameter.'
