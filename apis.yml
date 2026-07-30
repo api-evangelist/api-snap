@@ -2,7 +2,20 @@ aid: api-snap
 url: https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/apis.yml
 name: API Snap
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/api-snap.png
 description: >-
   API Snap is a developer utility platform that consolidates 13+ commonly needed REST APIs into a single, unified
   service with one API key. The platform provides QR code generation, screenshot capture, image resize and conversion,
@@ -32,276 +45,339 @@ tags:
   - Placeholder Images
 url-source: https://api-snap.com/
 apis:
-  - aid: api-snap:qr
-    name: QR Code API
-    tags:
-      - QR Codes
-      - Image Generation
-      - Encoding
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/qr-generate-example.json
-        type: Examples
-    description: >-
-      Generate QR codes encoding any text or URL. Supports configurable size up to 1000 pixels, PNG or SVG output
-      formats, and custom foreground/background hex colors. Returns the encoded image directly with the appropriate
-      content type.
-  - aid: api-snap:screenshot
-    name: Screenshot API
-    tags:
-      - Screenshots
-      - Browser Automation
-      - Web Capture
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/screenshot-capture-example.json
-        type: Examples
-    description: >-
-      Capture a webpage screenshot by URL. Configurable viewport width and height, output format (PNG or JPEG), and an
-      option to capture the full scrollable page. A managed alternative to running headless Chromium or Puppeteer.
-  - aid: api-snap:resize
-    name: Image Resize API
-    tags:
-      - Image Processing
-      - Image Resize
-      - Format Conversion
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/resize-image-example.json
-        type: Examples
-    description: >-
-      Resize and convert images. Accepts a binary upload, base64 string, or remote URL. Supports PNG, JPEG, WebP, and
-      AVIF output, configurable quality, target width and height up to 4096 pixels, and standard fit modes (cover,
-      contain, fill, inside, outside).
-  - aid: api-snap:pdf
-    name: PDF API
-    tags:
-      - PDF
-      - Document Generation
-      - HTML to PDF
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/pdf-generate-example.json
-        type: Examples
-    description: >-
-      Convert HTML content into a PDF document. Accepts arbitrary HTML and an optional filename title, returning an
-      application/pdf payload with a Content-Disposition header for direct download.
-  - aid: api-snap:markdown
-    name: Markdown API
-    tags:
-      - Markdown
-      - HTML
-      - Content Conversion
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/markdown-render-example.json
-        type: Examples
-    description: >-
-      Convert Markdown content to HTML. Supports a styled mode that returns a full standalone HTML page with default
-      styling, or an unstyled mode that returns a JSON document with the raw HTML fragment for embedding in your own UI.
-  - aid: api-snap:meta
-    name: URL Metadata API
-    tags:
-      - URL Metadata
-      - Open Graph
-      - Link Preview
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/meta-url-metadata-schema.json
-        type: JSONSchema
-      - url: json-structure/meta-url-metadata-structure.json
-        type: JSONStructure
-      - url: examples/meta-extract-example.json
-        type: Examples
-    description: >-
-      Extract URL metadata and Open Graph tags for any web page. Returns a structured JSON document with title,
-      description, image, site name, type, favicon, theme color, author, and published date for use in link previews and
-      content cards.
-  - aid: api-snap:hash
-    name: Hash API
-    tags:
-      - Hashing
-      - Cryptography
-      - Security
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/hash-hash-result-schema.json
-        type: JSONSchema
-      - url: json-structure/hash-hash-result-structure.json
-        type: JSONStructure
-      - url: examples/hash-string-example.json
-        type: Examples
-    description: >-
-      Compute cryptographic hashes of arbitrary text. Supports MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256, and
-      SHA3-512 algorithms with hex, base64, or base64url encodings. Available via either GET (query parameters) or POST
-      (JSON body).
-  - aid: api-snap:jwt-decode
-    name: JWT Decode API
-    tags:
-      - JWT
-      - Tokens
-      - Security
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/jwt-decode-jwt-decoded-schema.json
-        type: JSONSchema
-      - url: json-structure/jwt-decode-jwt-decoded-structure.json
-        type: JSONStructure
-      - url: examples/jwt-decode-example.json
-        type: Examples
-    description: >-
-      Decode a JSON Web Token without verification, returning the header and payload as JSON along with computed
-      expiration metadata (expired flag, expiresAt, issuedAt). Useful for debugging tokens and inspecting claims during
-      integration work.
-  - aid: api-snap:base64
-    name: Base64 API
-    tags:
-      - Base64
-      - Encoding
-      - Decoding
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/base64-base64-result-schema.json
-        type: JSONSchema
-      - url: json-structure/base64-base64-result-structure.json
-        type: JSONStructure
-      - url: examples/base64-encode-example.json
-        type: Examples
-    description: >-
-      Base64 encode or decode an arbitrary string. Supports a URL-safe variant for use in URLs and tokens. Accepts a
-      JSON request body specifying the action and returns the result with a confirmation of the action performed.
-  - aid: api-snap:uuid
-    name: UUID API
-    tags:
-      - UUID
-      - Identifiers
-      - ID Generation
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/uuid-id-result-schema.json
-        type: JSONSchema
-      - url: json-structure/uuid-id-result-structure.json
-        type: JSONStructure
-      - url: examples/uuid-generate-example.json
-        type: Examples
-    description: >-
-      Generate unique identifiers in multiple formats including UUID v4, NanoID, short NanoID, hex, base64, numeric, and
-      timestamp-based IDs. Supports batch generation of up to 100 IDs per request and an optional prefix for typed IDs
-      (e.g. usr_, ord_).
-  - aid: api-snap:color
-    name: Color API
-    tags:
-      - Color
-      - Color Conversion
-      - Design Utilities
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/color-color-conversion-schema.json
-        type: JSONSchema
-      - url: json-structure/color-color-conversion-structure.json
-        type: JSONStructure
-      - url: examples/color-convert-example.json
-        type: Examples
-    description: >-
-      Convert color values between hex, RGB, and HSL formats. Returns structured representations for each format along
-      with computed brightness (0-255) and a derived isDark boolean useful for choosing accessible foreground colors.
-  - aid: api-snap:lorem
-    name: Lorem Ipsum API
-    tags:
-      - Lorem Ipsum
-      - Placeholder Text
-      - Content Generation
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: json-schema/lorem-lorem-text-schema.json
-        type: JSONSchema
-      - url: json-structure/lorem-lorem-text-structure.json
-        type: JSONStructure
-      - url: examples/lorem-generate-example.json
-        type: Examples
-    description: >-
-      Generate lorem ipsum placeholder text. Supports configurable paragraph and sentence counts (1-20 each) and either
-      plain text or HTML output for use in design mockups, prototypes, and tests.
-  - aid: api-snap:placeholder
-    name: Placeholder Image API
-    tags:
-      - Placeholder Images
-      - SVG
-      - Design Utilities
-    humanURL: https://api-snap.com/
-    baseURL: https://api-snap.com/api
-    properties:
-      - url: https://api-snap.com/
-        type: Documentation
-      - url: openapi/api-snap-openapi.yml
-        type: OpenAPI
-      - url: examples/placeholder-generate-example.json
-        type: Examples
-    description: >-
-      Generate SVG placeholder images for design and prototyping. Supports configurable width and height up to 2000
-      pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the
-      image.
+- aid: api-snap:api-snap-browser-api
+  name: API Snap Browser API
+  description: Headless browser operations like screenshot capture
+  humanURL: https://api-snap.com/
+  baseURL: https://api-snap.com/api
+  tags:
+  - Browser
+  properties:
+  - type: OpenAPI
+    url: openapi/api-snap-browser-api-openapi.yml
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: Examples
+    url: examples/qr-generate-example.json
+  - type: Examples
+    url: examples/screenshot-capture-example.json
+  - type: Examples
+    url: examples/resize-image-example.json
+  - type: Examples
+    url: examples/pdf-generate-example.json
+  - type: Examples
+    url: examples/markdown-render-example.json
+  - type: JSONSchema
+    url: json-schema/meta-url-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/meta-url-metadata-structure.json
+  - type: Examples
+    url: examples/meta-extract-example.json
+  - type: JSONSchema
+    url: json-schema/hash-hash-result-schema.json
+  - type: JSONStructure
+    url: json-structure/hash-hash-result-structure.json
+  - type: Examples
+    url: examples/hash-string-example.json
+  - type: JSONSchema
+    url: json-schema/jwt-decode-jwt-decoded-schema.json
+  - type: JSONStructure
+    url: json-structure/jwt-decode-jwt-decoded-structure.json
+  - type: Examples
+    url: examples/jwt-decode-example.json
+  - type: JSONSchema
+    url: json-schema/base64-base64-result-schema.json
+  - type: JSONStructure
+    url: json-structure/base64-base64-result-structure.json
+  - type: Examples
+    url: examples/base64-encode-example.json
+  - type: JSONSchema
+    url: json-schema/uuid-id-result-schema.json
+  - type: JSONStructure
+    url: json-structure/uuid-id-result-structure.json
+  - type: Examples
+    url: examples/uuid-generate-example.json
+  - type: JSONSchema
+    url: json-schema/color-color-conversion-schema.json
+  - type: JSONStructure
+    url: json-structure/color-color-conversion-structure.json
+  - type: Examples
+    url: examples/color-convert-example.json
+  - type: JSONSchema
+    url: json-schema/lorem-lorem-text-schema.json
+  - type: JSONStructure
+    url: json-structure/lorem-lorem-text-structure.json
+  - type: Examples
+    url: examples/lorem-generate-example.json
+  - type: Examples
+    url: examples/placeholder-generate-example.json
+- aid: api-snap:api-snap-documents-api
+  name: API Snap Documents API
+  description: Document generation and conversion (PDF, Markdown)
+  humanURL: https://api-snap.com/
+  baseURL: https://api-snap.com/api
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/api-snap-documents-api-openapi.yml
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: Examples
+    url: examples/qr-generate-example.json
+  - type: Examples
+    url: examples/screenshot-capture-example.json
+  - type: Examples
+    url: examples/resize-image-example.json
+  - type: Examples
+    url: examples/pdf-generate-example.json
+  - type: Examples
+    url: examples/markdown-render-example.json
+  - type: JSONSchema
+    url: json-schema/meta-url-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/meta-url-metadata-structure.json
+  - type: Examples
+    url: examples/meta-extract-example.json
+  - type: JSONSchema
+    url: json-schema/hash-hash-result-schema.json
+  - type: JSONStructure
+    url: json-structure/hash-hash-result-structure.json
+  - type: Examples
+    url: examples/hash-string-example.json
+  - type: JSONSchema
+    url: json-schema/jwt-decode-jwt-decoded-schema.json
+  - type: JSONStructure
+    url: json-structure/jwt-decode-jwt-decoded-structure.json
+  - type: Examples
+    url: examples/jwt-decode-example.json
+  - type: JSONSchema
+    url: json-schema/base64-base64-result-schema.json
+  - type: JSONStructure
+    url: json-structure/base64-base64-result-structure.json
+  - type: Examples
+    url: examples/base64-encode-example.json
+  - type: JSONSchema
+    url: json-schema/uuid-id-result-schema.json
+  - type: JSONStructure
+    url: json-structure/uuid-id-result-structure.json
+  - type: Examples
+    url: examples/uuid-generate-example.json
+  - type: JSONSchema
+    url: json-schema/color-color-conversion-schema.json
+  - type: JSONStructure
+    url: json-structure/color-color-conversion-structure.json
+  - type: Examples
+    url: examples/color-convert-example.json
+  - type: JSONSchema
+    url: json-schema/lorem-lorem-text-schema.json
+  - type: JSONStructure
+    url: json-structure/lorem-lorem-text-structure.json
+  - type: Examples
+    url: examples/lorem-generate-example.json
+  - type: Examples
+    url: examples/placeholder-generate-example.json
+- aid: api-snap:api-snap-images-api
+  name: API Snap Images API
+  description: QR codes, image resizing, and placeholder image generation
+  humanURL: https://api-snap.com/
+  baseURL: https://api-snap.com/api
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/api-snap-images-api-openapi.yml
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: Examples
+    url: examples/qr-generate-example.json
+  - type: Examples
+    url: examples/screenshot-capture-example.json
+  - type: Examples
+    url: examples/resize-image-example.json
+  - type: Examples
+    url: examples/pdf-generate-example.json
+  - type: Examples
+    url: examples/markdown-render-example.json
+  - type: JSONSchema
+    url: json-schema/meta-url-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/meta-url-metadata-structure.json
+  - type: Examples
+    url: examples/meta-extract-example.json
+  - type: JSONSchema
+    url: json-schema/hash-hash-result-schema.json
+  - type: JSONStructure
+    url: json-structure/hash-hash-result-structure.json
+  - type: Examples
+    url: examples/hash-string-example.json
+  - type: JSONSchema
+    url: json-schema/jwt-decode-jwt-decoded-schema.json
+  - type: JSONStructure
+    url: json-structure/jwt-decode-jwt-decoded-structure.json
+  - type: Examples
+    url: examples/jwt-decode-example.json
+  - type: JSONSchema
+    url: json-schema/base64-base64-result-schema.json
+  - type: JSONStructure
+    url: json-structure/base64-base64-result-structure.json
+  - type: Examples
+    url: examples/base64-encode-example.json
+  - type: JSONSchema
+    url: json-schema/uuid-id-result-schema.json
+  - type: JSONStructure
+    url: json-structure/uuid-id-result-structure.json
+  - type: Examples
+    url: examples/uuid-generate-example.json
+  - type: JSONSchema
+    url: json-schema/color-color-conversion-schema.json
+  - type: JSONStructure
+    url: json-structure/color-color-conversion-structure.json
+  - type: Examples
+    url: examples/color-convert-example.json
+  - type: JSONSchema
+    url: json-schema/lorem-lorem-text-schema.json
+  - type: JSONStructure
+    url: json-structure/lorem-lorem-text-structure.json
+  - type: Examples
+    url: examples/lorem-generate-example.json
+  - type: Examples
+    url: examples/placeholder-generate-example.json
+- aid: api-snap:api-snap-security-api
+  name: API Snap Security API
+  description: Cryptographic hashing and JWT decoding
+  humanURL: https://api-snap.com/
+  baseURL: https://api-snap.com/api
+  tags:
+  - Security
+  properties:
+  - type: OpenAPI
+    url: openapi/api-snap-security-api-openapi.yml
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: Examples
+    url: examples/qr-generate-example.json
+  - type: Examples
+    url: examples/screenshot-capture-example.json
+  - type: Examples
+    url: examples/resize-image-example.json
+  - type: Examples
+    url: examples/pdf-generate-example.json
+  - type: Examples
+    url: examples/markdown-render-example.json
+  - type: JSONSchema
+    url: json-schema/meta-url-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/meta-url-metadata-structure.json
+  - type: Examples
+    url: examples/meta-extract-example.json
+  - type: JSONSchema
+    url: json-schema/hash-hash-result-schema.json
+  - type: JSONStructure
+    url: json-structure/hash-hash-result-structure.json
+  - type: Examples
+    url: examples/hash-string-example.json
+  - type: JSONSchema
+    url: json-schema/jwt-decode-jwt-decoded-schema.json
+  - type: JSONStructure
+    url: json-structure/jwt-decode-jwt-decoded-structure.json
+  - type: Examples
+    url: examples/jwt-decode-example.json
+  - type: JSONSchema
+    url: json-schema/base64-base64-result-schema.json
+  - type: JSONStructure
+    url: json-structure/base64-base64-result-structure.json
+  - type: Examples
+    url: examples/base64-encode-example.json
+  - type: JSONSchema
+    url: json-schema/uuid-id-result-schema.json
+  - type: JSONStructure
+    url: json-structure/uuid-id-result-structure.json
+  - type: Examples
+    url: examples/uuid-generate-example.json
+  - type: JSONSchema
+    url: json-schema/color-color-conversion-schema.json
+  - type: JSONStructure
+    url: json-structure/color-color-conversion-structure.json
+  - type: Examples
+    url: examples/color-convert-example.json
+  - type: JSONSchema
+    url: json-schema/lorem-lorem-text-schema.json
+  - type: JSONStructure
+    url: json-structure/lorem-lorem-text-structure.json
+  - type: Examples
+    url: examples/lorem-generate-example.json
+  - type: Examples
+    url: examples/placeholder-generate-example.json
+- aid: api-snap:api-snap-utilities-api
+  name: API Snap Utilities API
+  description: General-purpose developer utilities
+  humanURL: https://api-snap.com/
+  baseURL: https://api-snap.com/api
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/api-snap-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://api-snap.com/
+  - type: Examples
+    url: examples/qr-generate-example.json
+  - type: Examples
+    url: examples/screenshot-capture-example.json
+  - type: Examples
+    url: examples/resize-image-example.json
+  - type: Examples
+    url: examples/pdf-generate-example.json
+  - type: Examples
+    url: examples/markdown-render-example.json
+  - type: JSONSchema
+    url: json-schema/meta-url-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/meta-url-metadata-structure.json
+  - type: Examples
+    url: examples/meta-extract-example.json
+  - type: JSONSchema
+    url: json-schema/hash-hash-result-schema.json
+  - type: JSONStructure
+    url: json-structure/hash-hash-result-structure.json
+  - type: Examples
+    url: examples/hash-string-example.json
+  - type: JSONSchema
+    url: json-schema/jwt-decode-jwt-decoded-schema.json
+  - type: JSONStructure
+    url: json-structure/jwt-decode-jwt-decoded-structure.json
+  - type: Examples
+    url: examples/jwt-decode-example.json
+  - type: JSONSchema
+    url: json-schema/base64-base64-result-schema.json
+  - type: JSONStructure
+    url: json-structure/base64-base64-result-structure.json
+  - type: Examples
+    url: examples/base64-encode-example.json
+  - type: JSONSchema
+    url: json-schema/uuid-id-result-schema.json
+  - type: JSONStructure
+    url: json-structure/uuid-id-result-structure.json
+  - type: Examples
+    url: examples/uuid-generate-example.json
+  - type: JSONSchema
+    url: json-schema/color-color-conversion-schema.json
+  - type: JSONStructure
+    url: json-structure/color-color-conversion-structure.json
+  - type: Examples
+    url: examples/color-convert-example.json
+  - type: JSONSchema
+    url: json-schema/lorem-lorem-text-schema.json
+  - type: JSONStructure
+    url: json-structure/lorem-lorem-text-structure.json
+  - type: Examples
+    url: examples/lorem-generate-example.json
+  - type: Examples
+    url: examples/placeholder-generate-example.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/api-snap/overview
   - type: AgenticAccess
     url: agentic-access/api-snap-agentic-access.yml
   - type: DomainSecurity
