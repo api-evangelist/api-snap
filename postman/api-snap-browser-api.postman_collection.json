@@ -1,0 +1,405 @@
+{
+  "info": {
+    "_postman_id": "c4cee31f-65ac-4c75-a4e3-9b7d2a86a1f2",
+    "name": "API Snap Browser API",
+    "description": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:49.000Z",
+    "updatedAt": "2026-07-28T01:01:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4cee31f-65ac-4c75-a4e3-9b7d2a86a1f2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "screenshot",
+          "item": [
+            {
+              "name": "Capture Webpage Screenshot",
+              "id": "5b22d1b0-7c1e-49d0-9d65-151c35db38ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/screenshot?url=<uri>&width=1280&height=720&format=png&full_page=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "screenshot"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The URL of the webpage to screenshot.",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Viewport width in pixels (max 1920).",
+                      "key": "width",
+                      "value": "1280"
+                    },
+                    {
+                      "description": "Viewport height in pixels (max 1080).",
+                      "key": "height",
+                      "value": "720"
+                    },
+                    {
+                      "description": "Image output format.",
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "Capture the full scrollable page instead of only the viewport.",
+                      "key": "full_page",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "description": "Capture a screenshot of any publicly accessible URL. Returns PNG or JPEG."
+              },
+              "response": [
+                {
+                  "id": "2205c6a2-4b65-44f3-8968-8db136ec954d",
+                  "name": "Screenshot image",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "image/png"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/screenshot?url=<uri>&width=1280&height=720&format=png&full_page=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "screenshot"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The URL of the webpage to screenshot.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Viewport width in pixels (max 1920).",
+                          "key": "width",
+                          "value": "1280"
+                        },
+                        {
+                          "description": "Viewport height in pixels (max 1080).",
+                          "key": "height",
+                          "value": "720"
+                        },
+                        {
+                          "description": "Image output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Capture the full scrollable page instead of only the viewport.",
+                          "key": "full_page",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "image/png"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<binary>",
+                  "createdAt": "2026-07-28T01:01:49.000Z",
+                  "updatedAt": "2026-07-28T01:01:49.000Z",
+                  "uid": "35240-2205c6a2-4b65-44f3-8968-8db136ec954d"
+                },
+                {
+                  "id": "7e839b75-0cb9-446f-bc10-9ee9e50b8a3a",
+                  "name": "Missing or invalid URL",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/screenshot?url=<uri>&width=1280&height=720&format=png&full_page=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "screenshot"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The URL of the webpage to screenshot.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Viewport width in pixels (max 1920).",
+                          "key": "width",
+                          "value": "1280"
+                        },
+                        {
+                          "description": "Viewport height in pixels (max 1080).",
+                          "key": "height",
+                          "value": "720"
+                        },
+                        {
+                          "description": "Image output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Capture the full scrollable page instead of only the viewport.",
+                          "key": "full_page",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:49.000Z",
+                  "updatedAt": "2026-07-28T01:01:49.000Z",
+                  "uid": "35240-7e839b75-0cb9-446f-bc10-9ee9e50b8a3a"
+                },
+                {
+                  "id": "2f117eb8-0126-4544-9f35-d7cdb6cf5972",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/screenshot?url=<uri>&width=1280&height=720&format=png&full_page=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "screenshot"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The URL of the webpage to screenshot.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Viewport width in pixels (max 1920).",
+                          "key": "width",
+                          "value": "1280"
+                        },
+                        {
+                          "description": "Viewport height in pixels (max 1080).",
+                          "key": "height",
+                          "value": "720"
+                        },
+                        {
+                          "description": "Image output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Capture the full scrollable page instead of only the viewport.",
+                          "key": "full_page",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:49.000Z",
+                  "updatedAt": "2026-07-28T01:01:49.000Z",
+                  "uid": "35240-2f117eb8-0126-4544-9f35-d7cdb6cf5972"
+                },
+                {
+                  "id": "0d660682-b846-4397-8f30-82533003b7f5",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/screenshot?url=<uri>&width=1280&height=720&format=png&full_page=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "screenshot"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The URL of the webpage to screenshot.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Viewport width in pixels (max 1920).",
+                          "key": "width",
+                          "value": "1280"
+                        },
+                        {
+                          "description": "Viewport height in pixels (max 1080).",
+                          "key": "height",
+                          "value": "720"
+                        },
+                        {
+                          "description": "Image output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Capture the full scrollable page instead of only the viewport.",
+                          "key": "full_page",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:01:49.000Z",
+                  "updatedAt": "2026-07-28T01:01:49.000Z",
+                  "uid": "35240-0d660682-b846-4397-8f30-82533003b7f5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:01:49.000Z",
+              "updatedAt": "2026-07-28T01:01:49.000Z",
+              "uid": "35240-5b22d1b0-7c1e-49d0-9d65-151c35db38ca"
+            }
+          ],
+          "id": "26f9a515-1ced-4bf5-9bf3-f458e5263f42",
+          "createdAt": "2026-07-28T01:01:49.000Z",
+          "updatedAt": "2026-07-28T01:01:49.000Z",
+          "uid": "35240-26f9a515-1ced-4bf5-9bf3-f458e5263f42"
+        }
+      ],
+      "id": "ae0468c7-c4d3-4448-9e2d-314794bcbce7",
+      "createdAt": "2026-07-28T01:01:49.000Z",
+      "updatedAt": "2026-07-28T01:01:49.000Z",
+      "uid": "35240-ae0468c7-c4d3-4448-9e2d-314794bcbce7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-snap.com"
+    }
+  ]
+}

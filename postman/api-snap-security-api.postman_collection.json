@@ -1,0 +1,948 @@
+{
+  "info": {
+    "_postman_id": "0b9b56b0-f57c-4e5b-b4bb-0772bcce011d",
+    "name": "API Snap Browser Security API",
+    "description": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:02:29.000Z",
+    "updatedAt": "2026-07-28T01:02:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0b9b56b0-f57c-4e5b-b4bb-0772bcce011d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "hash",
+          "item": [
+            {
+              "name": "Hash a String (GET)",
+              "id": "4d2336e5-c80a-4288-b050-edc9628037e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/hash?text=<string>&algorithm=sha256&encoding=hex",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "hash"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The string to hash.",
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Hash algorithm to use.",
+                      "key": "algorithm",
+                      "value": "sha256"
+                    },
+                    {
+                      "description": "Output encoding.",
+                      "key": "encoding",
+                      "value": "hex"
+                    }
+                  ]
+                },
+                "description": "Compute a cryptographic hash of a string using the specified algorithm."
+              },
+              "response": [
+                {
+                  "id": "5fe84c3c-cd29-4edc-98ad-6ad6b31480b9",
+                  "name": "Hash result",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash?text=<string>&algorithm=sha256&encoding=hex",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The string to hash.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Hash algorithm to use.",
+                          "key": "algorithm",
+                          "value": "sha256"
+                        },
+                        {
+                          "description": "Output encoding.",
+                          "key": "encoding",
+                          "value": "hex"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hash\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"encoding\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-5fe84c3c-cd29-4edc-98ad-6ad6b31480b9"
+                },
+                {
+                  "id": "5338dad6-2b9e-471f-97dd-edb16282c3c2",
+                  "name": "Missing text or invalid algorithm/encoding",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash?text=<string>&algorithm=sha256&encoding=hex",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The string to hash.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Hash algorithm to use.",
+                          "key": "algorithm",
+                          "value": "sha256"
+                        },
+                        {
+                          "description": "Output encoding.",
+                          "key": "encoding",
+                          "value": "hex"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-5338dad6-2b9e-471f-97dd-edb16282c3c2"
+                },
+                {
+                  "id": "d2c799e0-246d-4650-b19d-bb2d9f25d6f9",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash?text=<string>&algorithm=sha256&encoding=hex",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The string to hash.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Hash algorithm to use.",
+                          "key": "algorithm",
+                          "value": "sha256"
+                        },
+                        {
+                          "description": "Output encoding.",
+                          "key": "encoding",
+                          "value": "hex"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-d2c799e0-246d-4650-b19d-bb2d9f25d6f9"
+                },
+                {
+                  "id": "416125d8-f682-4a8d-a856-9faf29a7360d",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash?text=<string>&algorithm=sha256&encoding=hex",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The string to hash.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Hash algorithm to use.",
+                          "key": "algorithm",
+                          "value": "sha256"
+                        },
+                        {
+                          "description": "Output encoding.",
+                          "key": "encoding",
+                          "value": "hex"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-416125d8-f682-4a8d-a856-9faf29a7360d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:02:29.000Z",
+              "updatedAt": "2026-07-28T01:02:29.000Z",
+              "uid": "35240-4d2336e5-c80a-4288-b050-edc9628037e8"
+            },
+            {
+              "name": "Hash a String (POST)",
+              "id": "d48f7b67-b19a-43b7-8994-0bb742c2bb0e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"algorithm\": \"sha256\",\n  \"encoding\": \"hex\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/hash",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "hash"
+                  ]
+                },
+                "description": "Compute a cryptographic hash of a string via JSON body. Useful for hashing large inputs."
+              },
+              "response": [
+                {
+                  "id": "adc2fb9b-49d1-42f2-b8f8-d1de09aabb52",
+                  "name": "Hash result",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"algorithm\": \"sha256\",\n  \"encoding\": \"hex\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hash\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"encoding\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-adc2fb9b-49d1-42f2-b8f8-d1de09aabb52"
+                },
+                {
+                  "id": "6a345b9c-e2df-4d07-9b26-9710b9b1ec1c",
+                  "name": "Missing text or invalid algorithm",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"algorithm\": \"sha256\",\n  \"encoding\": \"hex\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-6a345b9c-e2df-4d07-9b26-9710b9b1ec1c"
+                },
+                {
+                  "id": "4995dbb0-f7d5-44d7-a0c2-43c150ac0c1d",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"algorithm\": \"sha256\",\n  \"encoding\": \"hex\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-4995dbb0-f7d5-44d7-a0c2-43c150ac0c1d"
+                },
+                {
+                  "id": "ad9160e4-8d92-4c98-9ee2-8d8b8928e530",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"algorithm\": \"sha256\",\n  \"encoding\": \"hex\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hash"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-ad9160e4-8d92-4c98-9ee2-8d8b8928e530"
+                }
+              ],
+              "createdAt": "2026-07-28T01:02:29.000Z",
+              "updatedAt": "2026-07-28T01:02:29.000Z",
+              "uid": "35240-d48f7b67-b19a-43b7-8994-0bb742c2bb0e"
+            }
+          ],
+          "id": "13456662-2a67-469f-8015-e75c93aa288d",
+          "createdAt": "2026-07-28T01:02:29.000Z",
+          "updatedAt": "2026-07-28T01:02:29.000Z",
+          "uid": "35240-13456662-2a67-469f-8015-e75c93aa288d"
+        },
+        {
+          "name": "jwt-decode",
+          "item": [
+            {
+              "name": "Decode a JWT Token",
+              "id": "0d58d94f-80e0-4b3b-833f-bf2667aafeed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/jwt-decode",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "jwt-decode"
+                  ]
+                },
+                "description": "Decode a JSON Web Token (JWT) and return its header, payload, and human-readable expiry information. Does not verify the signature."
+              },
+              "response": [
+                {
+                  "id": "dc6c9364-873c-4d87-85bc-058f544119f0",
+                  "name": "Decoded JWT",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/jwt-decode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "jwt-decode"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"header\": {\n    \"incididunt_227\": -97074033.33238931\n  },\n  \"payload\": {\n    \"nulla_c\": true,\n    \"Ut_ea3\": -60793082.70345409\n  },\n  \"expired\": \"<boolean>\",\n  \"expiresAt\": \"<dateTime>\",\n  \"issuedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-dc6c9364-873c-4d87-85bc-058f544119f0"
+                },
+                {
+                  "id": "16b2dc72-15f0-44c1-947b-5289edb37a10",
+                  "name": "Missing token or invalid JWT format",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/jwt-decode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "jwt-decode"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-16b2dc72-15f0-44c1-947b-5289edb37a10"
+                },
+                {
+                  "id": "8480be21-2e9d-47cd-b091-8da0112bd810",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/jwt-decode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "jwt-decode"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-8480be21-2e9d-47cd-b091-8da0112bd810"
+                },
+                {
+                  "id": "883b7ab8-02d9-4535-84fd-06e4842888cf",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/jwt-decode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "jwt-decode"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:02:29.000Z",
+                  "updatedAt": "2026-07-28T01:02:29.000Z",
+                  "uid": "35240-883b7ab8-02d9-4535-84fd-06e4842888cf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:02:29.000Z",
+              "updatedAt": "2026-07-28T01:02:29.000Z",
+              "uid": "35240-0d58d94f-80e0-4b3b-833f-bf2667aafeed"
+            }
+          ],
+          "id": "f20fff75-9dd8-4ad3-ac56-47cc0c454a24",
+          "createdAt": "2026-07-28T01:02:29.000Z",
+          "updatedAt": "2026-07-28T01:02:29.000Z",
+          "uid": "35240-f20fff75-9dd8-4ad3-ac56-47cc0c454a24"
+        }
+      ],
+      "id": "6c36e848-9e46-46c9-823a-ef248aa1a063",
+      "createdAt": "2026-07-28T01:02:29.000Z",
+      "updatedAt": "2026-07-28T01:02:29.000Z",
+      "uid": "35240-6c36e848-9e46-46c9-823a-ef248aa1a063"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-snap.com"
+    }
+  ]
+}

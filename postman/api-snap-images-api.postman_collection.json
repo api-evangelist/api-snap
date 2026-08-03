@@ -1,0 +1,1162 @@
+{
+  "info": {
+    "_postman_id": "f0a1b838-ee7f-4ae0-a7c2-5fa481493333",
+    "name": "API Snap Browser Images API",
+    "description": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:52.000Z",
+    "updatedAt": "2026-07-28T01:01:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f0a1b838-ee7f-4ae0-a7c2-5fa481493333"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "qr",
+          "item": [
+            {
+              "name": "Generate QR Code",
+              "id": "082ed516-e30f-4299-8266-3bbfcd97883e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/qr?data=<string>&size=300&format=png&dark=%23000000&light=%23ffffff",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "qr"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The text or URL to encode in the QR code. Also accepted as `url`.",
+                      "key": "data",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Width/height of the QR code in pixels (max 1000).",
+                      "key": "size",
+                      "value": "300"
+                    },
+                    {
+                      "description": "Output format.",
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "Hex color for dark (foreground) modules.",
+                      "key": "dark",
+                      "value": "#000000"
+                    },
+                    {
+                      "description": "Hex color for light (background) modules.",
+                      "key": "light",
+                      "value": "#ffffff"
+                    }
+                  ]
+                },
+                "description": "Generate a QR code image for any text or URL. Returns PNG or SVG."
+              },
+              "response": [
+                {
+                  "id": "5b8d2336-4f00-450f-ae45-6252003161ed",
+                  "name": "QR code image",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "image/png"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/qr?data=<string>&size=300&format=png&dark=%23000000&light=%23ffffff",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "qr"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The text or URL to encode in the QR code. Also accepted as `url`.",
+                          "key": "data",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Width/height of the QR code in pixels (max 1000).",
+                          "key": "size",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Hex color for dark (foreground) modules.",
+                          "key": "dark",
+                          "value": "#000000"
+                        },
+                        {
+                          "description": "Hex color for light (background) modules.",
+                          "key": "light",
+                          "value": "#ffffff"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "image/png"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<binary>",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-5b8d2336-4f00-450f-ae45-6252003161ed"
+                },
+                {
+                  "id": "1a17f002-157b-4e85-9ca9-ef0078c95c75",
+                  "name": "Missing or invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/qr?data=<string>&size=300&format=png&dark=%23000000&light=%23ffffff",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "qr"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The text or URL to encode in the QR code. Also accepted as `url`.",
+                          "key": "data",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Width/height of the QR code in pixels (max 1000).",
+                          "key": "size",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Hex color for dark (foreground) modules.",
+                          "key": "dark",
+                          "value": "#000000"
+                        },
+                        {
+                          "description": "Hex color for light (background) modules.",
+                          "key": "light",
+                          "value": "#ffffff"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-1a17f002-157b-4e85-9ca9-ef0078c95c75"
+                },
+                {
+                  "id": "b09c6b9b-6600-4032-8ac8-3a892ce00ffa",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/qr?data=<string>&size=300&format=png&dark=%23000000&light=%23ffffff",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "qr"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The text or URL to encode in the QR code. Also accepted as `url`.",
+                          "key": "data",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Width/height of the QR code in pixels (max 1000).",
+                          "key": "size",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Hex color for dark (foreground) modules.",
+                          "key": "dark",
+                          "value": "#000000"
+                        },
+                        {
+                          "description": "Hex color for light (background) modules.",
+                          "key": "light",
+                          "value": "#ffffff"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-b09c6b9b-6600-4032-8ac8-3a892ce00ffa"
+                },
+                {
+                  "id": "5f9cd0d4-aa07-4629-bd18-6f33637acdc1",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/qr?data=<string>&size=300&format=png&dark=%23000000&light=%23ffffff",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "qr"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The text or URL to encode in the QR code. Also accepted as `url`.",
+                          "key": "data",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Width/height of the QR code in pixels (max 1000).",
+                          "key": "size",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Output format.",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Hex color for dark (foreground) modules.",
+                          "key": "dark",
+                          "value": "#000000"
+                        },
+                        {
+                          "description": "Hex color for light (background) modules.",
+                          "key": "light",
+                          "value": "#ffffff"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-5f9cd0d4-aa07-4629-bd18-6f33637acdc1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:01:52.000Z",
+              "updatedAt": "2026-07-28T01:01:52.000Z",
+              "uid": "35240-082ed516-e30f-4299-8266-3bbfcd97883e"
+            }
+          ],
+          "id": "a381dfc0-bbde-471b-b7be-ee6610817cd3",
+          "createdAt": "2026-07-28T01:01:52.000Z",
+          "updatedAt": "2026-07-28T01:01:52.000Z",
+          "uid": "35240-a381dfc0-bbde-471b-b7be-ee6610817cd3"
+        },
+        {
+          "name": "resize",
+          "item": [
+            {
+              "name": "Resize and Convert Images",
+              "id": "a86a4b73-fb63-47f4-a595-9628c5b0547b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) The image file to resize.",
+                      "key": "image",
+                      "type": "file",
+                      "value": null
+                    },
+                    {
+                      "description": "Target width in pixels (max 4096).",
+                      "key": "width",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Target height in pixels (max 4096).",
+                      "key": "height",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": " (This can only be one of png,jpeg,jpg,webp,avif)",
+                      "key": "format",
+                      "value": "png",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Output quality (1\u2013100). Applies to JPEG, WebP, AVIF.",
+                      "key": "quality",
+                      "value": "80",
+                      "type": "text"
+                    },
+                    {
+                      "description": "How to fit the image within the target dimensions. (This can only be one of cover,contain,fill,inside,outside)",
+                      "key": "fit",
+                      "value": "cover",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/resize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "resize"
+                  ]
+                },
+                "description": "Resize and/or convert images to PNG, WebP, JPEG, or AVIF. Accepts multipart form data (with an `image` file field) or a JSON body with a base64-encoded image or image URL."
+              },
+              "response": [
+                {
+                  "id": "dd5725e7-eccd-4edc-8e6c-9243bde970da",
+                  "name": "Resized image binary",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "image/png"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to resize.",
+                          "key": "image",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target width in pixels (max 4096).",
+                          "key": "width",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Target height in pixels (max 4096).",
+                          "key": "height",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of png,jpeg,jpg,webp,avif)",
+                          "key": "format",
+                          "value": "png",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Output quality (1\u2013100). Applies to JPEG, WebP, AVIF.",
+                          "key": "quality",
+                          "value": "80",
+                          "type": "text"
+                        },
+                        {
+                          "description": "How to fit the image within the target dimensions. (This can only be one of cover,contain,fill,inside,outside)",
+                          "key": "fit",
+                          "value": "cover",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/resize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "resize"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "image/png"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<binary>",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-dd5725e7-eccd-4edc-8e6c-9243bde970da"
+                },
+                {
+                  "id": "0742426b-f14b-4d1e-93ce-7f69c727a502",
+                  "name": "Missing image input or invalid parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to resize.",
+                          "key": "image",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target width in pixels (max 4096).",
+                          "key": "width",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Target height in pixels (max 4096).",
+                          "key": "height",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of png,jpeg,jpg,webp,avif)",
+                          "key": "format",
+                          "value": "png",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Output quality (1\u2013100). Applies to JPEG, WebP, AVIF.",
+                          "key": "quality",
+                          "value": "80",
+                          "type": "text"
+                        },
+                        {
+                          "description": "How to fit the image within the target dimensions. (This can only be one of cover,contain,fill,inside,outside)",
+                          "key": "fit",
+                          "value": "cover",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/resize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "resize"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-0742426b-f14b-4d1e-93ce-7f69c727a502"
+                },
+                {
+                  "id": "06c45c8a-4225-491e-bc4d-2bc75d261557",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to resize.",
+                          "key": "image",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target width in pixels (max 4096).",
+                          "key": "width",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Target height in pixels (max 4096).",
+                          "key": "height",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of png,jpeg,jpg,webp,avif)",
+                          "key": "format",
+                          "value": "png",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Output quality (1\u2013100). Applies to JPEG, WebP, AVIF.",
+                          "key": "quality",
+                          "value": "80",
+                          "type": "text"
+                        },
+                        {
+                          "description": "How to fit the image within the target dimensions. (This can only be one of cover,contain,fill,inside,outside)",
+                          "key": "fit",
+                          "value": "cover",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/resize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "resize"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-06c45c8a-4225-491e-bc4d-2bc75d261557"
+                },
+                {
+                  "id": "f9356faa-3fb1-406b-a517-8549104c3de0",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to resize.",
+                          "key": "image",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target width in pixels (max 4096).",
+                          "key": "width",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Target height in pixels (max 4096).",
+                          "key": "height",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of png,jpeg,jpg,webp,avif)",
+                          "key": "format",
+                          "value": "png",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Output quality (1\u2013100). Applies to JPEG, WebP, AVIF.",
+                          "key": "quality",
+                          "value": "80",
+                          "type": "text"
+                        },
+                        {
+                          "description": "How to fit the image within the target dimensions. (This can only be one of cover,contain,fill,inside,outside)",
+                          "key": "fit",
+                          "value": "cover",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/resize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "resize"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-f9356faa-3fb1-406b-a517-8549104c3de0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:01:52.000Z",
+              "updatedAt": "2026-07-28T01:01:52.000Z",
+              "uid": "35240-a86a4b73-fb63-47f4-a595-9628c5b0547b"
+            }
+          ],
+          "id": "9d3c55f4-79a3-424c-9100-cd25b49ee05d",
+          "createdAt": "2026-07-28T01:01:52.000Z",
+          "updatedAt": "2026-07-28T01:01:52.000Z",
+          "uid": "35240-9d3c55f4-79a3-424c-9100-cd25b49ee05d"
+        },
+        {
+          "name": "placeholder",
+          "item": [
+            {
+              "name": "Generate Placeholder Image",
+              "id": "c861f8a6-e122-4f10-a591-dd7dec6ccfe2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/svg+xml"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/placeholder?w=300&h=200&bg=cccccc&fg=666666&text=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "placeholder"
+                  ],
+                  "query": [
+                    {
+                      "description": "Image width in pixels (1\u20132000).",
+                      "key": "w",
+                      "value": "300"
+                    },
+                    {
+                      "description": "Image height in pixels (1\u20132000).",
+                      "key": "h",
+                      "value": "200"
+                    },
+                    {
+                      "description": "Background color as a hex string without the `#` prefix.",
+                      "key": "bg",
+                      "value": "cccccc"
+                    },
+                    {
+                      "description": "Text/foreground color as a hex string without the `#` prefix.",
+                      "key": "fg",
+                      "value": "666666"
+                    },
+                    {
+                      "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`).",
+                      "key": "text",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Generate an SVG placeholder image of any size with customizable background color, text color, and label."
+              },
+              "response": [
+                {
+                  "id": "31363215-0725-48df-b08c-bbabde715d61",
+                  "name": "SVG placeholder image",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "image/svg+xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/placeholder?w=300&h=200&bg=cccccc&fg=666666&text=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "placeholder"
+                      ],
+                      "query": [
+                        {
+                          "description": "Image width in pixels (1\u20132000).",
+                          "key": "w",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Image height in pixels (1\u20132000).",
+                          "key": "h",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Background color as a hex string without the `#` prefix.",
+                          "key": "bg",
+                          "value": "cccccc"
+                        },
+                        {
+                          "description": "Text/foreground color as a hex string without the `#` prefix.",
+                          "key": "fg",
+                          "value": "666666"
+                        },
+                        {
+                          "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`).",
+                          "key": "text",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "image/svg+xml"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "public, max-age=31536000, immutable",
+                        "type": "text/plain"
+                      },
+                      "key": "Cache-Control",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-31363215-0725-48df-b08c-bbabde715d61"
+                },
+                {
+                  "id": "815a90d8-1aa5-4452-af31-eea0b6a956c5",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/placeholder?w=300&h=200&bg=cccccc&fg=666666&text=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "placeholder"
+                      ],
+                      "query": [
+                        {
+                          "description": "Image width in pixels (1\u20132000).",
+                          "key": "w",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Image height in pixels (1\u20132000).",
+                          "key": "h",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Background color as a hex string without the `#` prefix.",
+                          "key": "bg",
+                          "value": "cccccc"
+                        },
+                        {
+                          "description": "Text/foreground color as a hex string without the `#` prefix.",
+                          "key": "fg",
+                          "value": "666666"
+                        },
+                        {
+                          "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`).",
+                          "key": "text",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-815a90d8-1aa5-4452-af31-eea0b6a956c5"
+                },
+                {
+                  "id": "97866a8e-93a8-426c-9cf5-cac5641eb21b",
+                  "name": "Monthly API call limit reached",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/placeholder?w=300&h=200&bg=cccccc&fg=666666&text=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "placeholder"
+                      ],
+                      "query": [
+                        {
+                          "description": "Image width in pixels (1\u20132000).",
+                          "key": "w",
+                          "value": "300"
+                        },
+                        {
+                          "description": "Image height in pixels (1\u20132000).",
+                          "key": "h",
+                          "value": "200"
+                        },
+                        {
+                          "description": "Background color as a hex string without the `#` prefix.",
+                          "key": "bg",
+                          "value": "cccccc"
+                        },
+                        {
+                          "description": "Text/foreground color as a hex string without the `#` prefix.",
+                          "key": "fg",
+                          "value": "666666"
+                        },
+                        {
+                          "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`).",
+                          "key": "text",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Monthly call limit",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Remaining calls this month",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"usage\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"upgrade_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:01:52.000Z",
+                  "updatedAt": "2026-07-28T01:01:52.000Z",
+                  "uid": "35240-97866a8e-93a8-426c-9cf5-cac5641eb21b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:01:52.000Z",
+              "updatedAt": "2026-07-28T01:01:52.000Z",
+              "uid": "35240-c861f8a6-e122-4f10-a591-dd7dec6ccfe2"
+            }
+          ],
+          "id": "0be9c64c-c61e-4f38-af39-e03dc7e0a1a4",
+          "createdAt": "2026-07-28T01:01:52.000Z",
+          "updatedAt": "2026-07-28T01:01:52.000Z",
+          "uid": "35240-0be9c64c-c61e-4f38-af39-e03dc7e0a1a4"
+        }
+      ],
+      "id": "ca466281-b9c5-4b29-829d-3fc6c0b7539e",
+      "createdAt": "2026-07-28T01:01:52.000Z",
+      "updatedAt": "2026-07-28T01:01:52.000Z",
+      "uid": "35240-ca466281-b9c5-4b29-829d-3fc6c0b7539e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-snap.com"
+    }
+  ]
+}

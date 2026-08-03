@@ -1,0 +1,22 @@
+{
+  "provider": "api-snap",
+  "sources": [
+    "api-snap-browser-api-openapi.yml",
+    "api-snap-documents-api-openapi.yml",
+    "api-snap-images-api-openapi.yml",
+    "api-snap-security-api-openapi.yml",
+    "api-snap-utilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "api-snap-browser-api-openapi.yml",
+    "api-snap-documents-api-openapi.yml",
+    "api-snap-images-api-openapi.yml",
+    "api-snap-security-api-openapi.yml",
+    "api-snap-utilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
