@@ -1,0 +1,1345 @@
+{
+  "item": [
+    {
+      "id": "386c6765-4068-4f18-98df-918b3e368c9f",
+      "name": "Utilities",
+      "description": {
+        "content": "General-purpose developer utilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22b39f56-5ebb-4c58-909c-500865169778",
+          "name": "Generate UUIDs and Unique IDs",
+          "request": {
+            "name": "Generate UUIDs and Unique IDs",
+            "description": {
+              "content": "Generate one or more unique identifiers in various formats: UUID v4, nanoid, hex token, base64, numeric, or timestamp-prefixed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "uuid",
+                  "description": "ID format to generate."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "1",
+                  "description": "Number of IDs to generate (1–100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "Optional string prefix to prepend to each generated ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "185719c6-6bce-49e5-b9dd-50f5a934b79e",
+              "name": "Generated ID(s). Returns `id` (string) when count=1, or `ids` (array) when count>1.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "uuid"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "user_"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1d0f472-2820-4e42-ae98-d4002e9215a7",
+              "name": "Invalid format parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "uuid"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "user_"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb9c229b-e145-4b0f-9336-c009bfb3cf15",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "uuid"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "user_"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0a8c6a9-8283-4979-b548-2902f09f4c70",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "uuid"
+                    },
+                    {
+                      "key": "count",
+                      "value": "1"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "user_"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3127"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3127"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cef34def-f628-475d-9eb9-1c9f40d6ecea",
+          "name": "Extract URL Metadata and Open Graph Tags",
+          "request": {
+            "name": "Extract URL Metadata and Open Graph Tags",
+            "description": {
+              "content": "Fetch a URL and extract its title, description, Open Graph image, favicon, and other metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "meta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL to extract metadata from."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68c38caf-ab34-42aa-a82a-ce600edc6e5c",
+              "name": "Extracted metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://example.com\",\n  \"title\": \"Document\",\n  \"description\": \"example\",\n  \"image\": \"iVBORw0KGgoAAAANSUhEUgAA...\",\n  \"siteName\": \"example\",\n  \"type\": \"example\",\n  \"favicon\": \"example\",\n  \"themeColor\": \"example\",\n  \"author\": \"example\",\n  \"published\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7baf2263-ea07-4daa-91bc-8999911ede00",
+              "name": "Missing or invalid URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72ded67c-e963-4c7c-b34c-864c1c5acd9e",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9672cc5-08a1-45ea-96f2-4ab7531eba31",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3127"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3127"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c0c7bbf-4932-4474-8d6d-164292b92638",
+          "name": "Base64 Encode or Decode",
+          "request": {
+            "name": "Base64 Encode or Decode",
+            "description": {
+              "content": "Encode a string to Base64 or decode a Base64 string back to plain text. Supports standard and URL-safe Base64.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "base64"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"action\": \"encode\",\n  \"urlSafe\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c0ff8fe-c393-4632-937a-65bc83c36805",
+              "name": "Encoded or decoded result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Hello, World!\",\n  \"action\": \"encode\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"example\",\n  \"action\": \"encode\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "861c17d1-7324-4e36-91b4-5aed2e992747",
+              "name": "Missing input or invalid base64 data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Hello, World!\",\n  \"action\": \"encode\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "107922bc-40c5-472c-b0a9-8356ba9b6cfb",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Hello, World!\",\n  \"action\": \"encode\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aad551a-5981-420d-9f8b-442d98545f65",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "base64"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Hello, World!\",\n  \"action\": \"encode\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3127"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3127"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b005dab0-f453-49fe-8914-a69ab71478ce",
+          "name": "Convert Color Formats",
+          "request": {
+            "name": "Convert Color Formats",
+            "description": {
+              "content": "Convert a color between hex, RGB, HSL and get metadata like brightness and isDark. Accepts hex, rgb(), or hsl() input.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "color"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "color",
+                  "value": "<string>",
+                  "description": "(Required) Color value to convert. Accepts hex (e.g. `#ff0000` or `ff0000`), RGB (e.g. `rgb(255,0,0)`), or HSL (e.g. `hsl(0,100%,50%)`)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb22c9d5-d9b1-4d62-9b40-9c095dc6d3ed",
+              "name": "Color in all supported formats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "color"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "#ff0000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hex\": \"example\",\n  \"rgb\": \"example\",\n  \"rgbString\": \"example\",\n  \"hsl\": \"example\",\n  \"hslString\": \"example\",\n  \"rgba\": \"example\",\n  \"brightness\": 1,\n  \"isDark\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acfd18a2-0354-40a9-aab0-b42692d288e5",
+              "name": "Missing color parameter or unsupported format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "color"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "#ff0000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf18abe8-0a7b-4e9d-b2f7-e94e1304a635",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "color"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "#ff0000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7ae17f9-98f0-4f75-b73e-4906803531b6",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "color"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "#ff0000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3127"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3127"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "871da795-8c34-4d75-a824-fb30d67f0c72",
+          "name": "Generate Lorem Ipsum Text",
+          "request": {
+            "name": "Generate Lorem Ipsum Text",
+            "description": {
+              "content": "Generate placeholder lorem ipsum text as plain JSON or an HTML snippet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lorem"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "paragraphs",
+                  "value": "3",
+                  "description": "Number of paragraphs to generate (1–20)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sentences",
+                  "value": "5",
+                  "description": "Number of sentences per paragraph (1–20)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "text",
+                  "description": "Output format. `text` returns JSON; `html` returns `<p>` tags as HTML."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a3ed1b3-dd26-419e-af56-f662330cf29a",
+              "name": "Generated lorem ipsum content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lorem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "paragraphs",
+                      "value": "3"
+                    },
+                    {
+                      "key": "sentences",
+                      "value": "5"
+                    },
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"Sample text\",\n  \"paragraphs\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91a6755c-c222-49d4-b354-0edb5b9cc1df",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lorem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "paragraphs",
+                      "value": "3"
+                    },
+                    {
+                      "key": "sentences",
+                      "value": "5"
+                    },
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc8b3fc1-8c81-4da1-a224-31c5446ab0b9",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lorem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "paragraphs",
+                      "value": "3"
+                    },
+                    {
+                      "key": "sentences",
+                      "value": "5"
+                    },
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3127"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3127"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-snap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ccd1fe14-5575-4dfc-868f-298ecb92e385",
+    "name": "API Snap Browser Utilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+      "type": "text/plain"
+    }
+  }
+}

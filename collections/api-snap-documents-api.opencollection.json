@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Snap Browser Documents API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert HTML to PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/pdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert an HTML string to a downloadable PDF file."
+        },
+        {
+          "info": {
+            "name": "Convert Markdown to HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/markdown",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert a Markdown string to HTML. By default returns a fully styled HTML page; pass `styled: false` to get raw HTML fragment in a JSON response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

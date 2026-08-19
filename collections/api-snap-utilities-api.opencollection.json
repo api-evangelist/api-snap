@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Snap Browser Utilities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate UUIDs and Unique IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/uuid",
+            "params": [
+              {
+                "name": "format",
+                "value": "uuid",
+                "type": "query",
+                "description": "ID format to generate."
+              },
+              {
+                "name": "count",
+                "value": "1",
+                "type": "query",
+                "description": "Number of IDs to generate (1–100)."
+              },
+              {
+                "name": "prefix",
+                "value": "user_",
+                "type": "query",
+                "description": "Optional string prefix to prepend to each generated ID."
+              }
+            ]
+          },
+          "docs": "Generate one or more unique identifiers in various formats: UUID v4, nanoid, hex token, base64, numeric, or timestamp-prefixed."
+        },
+        {
+          "info": {
+            "name": "Extract URL Metadata and Open Graph Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/meta",
+            "params": [
+              {
+                "name": "url",
+                "value": "https://example.com",
+                "type": "query",
+                "description": "The URL to extract metadata from."
+              }
+            ]
+          },
+          "docs": "Fetch a URL and extract its title, description, Open Graph image, favicon, and other metadata."
+        },
+        {
+          "info": {
+            "name": "Base64 Encode or Decode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/base64",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Encode a string to Base64 or decode a Base64 string back to plain text. Supports standard and URL-safe Base64."
+        },
+        {
+          "info": {
+            "name": "Convert Color Formats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/color",
+            "params": [
+              {
+                "name": "color",
+                "value": "#ff0000",
+                "type": "query",
+                "description": "Color value to convert. Accepts hex (e.g. `#ff0000` or `ff0000`), RGB (e.g. `rgb(255,0,0)`), or HSL (e.g. `hsl(0,100%,50%)`)."
+              }
+            ]
+          },
+          "docs": "Convert a color between hex, RGB, HSL and get metadata like brightness and isDark. Accepts hex, rgb(), or hsl() input."
+        },
+        {
+          "info": {
+            "name": "Generate Lorem Ipsum Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/lorem",
+            "params": [
+              {
+                "name": "paragraphs",
+                "value": "3",
+                "type": "query",
+                "description": "Number of paragraphs to generate (1–20)."
+              },
+              {
+                "name": "sentences",
+                "value": "5",
+                "type": "query",
+                "description": "Number of sentences per paragraph (1–20)."
+              },
+              {
+                "name": "format",
+                "value": "text",
+                "type": "query",
+                "description": "Output format. `text` returns JSON; `html` returns `<p>` tags as HTML."
+              }
+            ]
+          },
+          "docs": "Generate placeholder lorem ipsum text as plain JSON or an HTML snippet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

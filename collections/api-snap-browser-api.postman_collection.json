@@ -1,0 +1,380 @@
+{
+  "item": [
+    {
+      "id": "2fcc13b1-f693-445c-accb-84a698731da3",
+      "name": "Browser",
+      "description": {
+        "content": "Headless browser operations like screenshot capture",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8e58500-d7d7-420f-abbe-f513a3e00980",
+          "name": "Capture Webpage Screenshot",
+          "request": {
+            "name": "Capture Webpage Screenshot",
+            "description": {
+              "content": "Capture a screenshot of any publicly accessible URL. Returns PNG or JPEG.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "screenshot"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL of the webpage to screenshot."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "1280",
+                  "description": "Viewport width in pixels (max 1920)."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "720",
+                  "description": "Viewport height in pixels (max 1080)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "png",
+                  "description": "Image output format."
+                },
+                {
+                  "disabled": false,
+                  "key": "full_page",
+                  "value": "false",
+                  "description": "Capture the full scrollable page instead of only the viewport."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c0589fc-b35b-443c-a00c-d06cf85c928a",
+              "name": "Screenshot image",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "screenshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    },
+                    {
+                      "key": "width",
+                      "value": "1280"
+                    },
+                    {
+                      "key": "height",
+                      "value": "720"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "full_page",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b553f4c4-ceb0-4329-b4a6-fa503c4f7b0d",
+              "name": "Missing or invalid URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "screenshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    },
+                    {
+                      "key": "width",
+                      "value": "1280"
+                    },
+                    {
+                      "key": "height",
+                      "value": "720"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "full_page",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d61ce5e7-e0be-47e1-941f-dea8ed89a12a",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "screenshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    },
+                    {
+                      "key": "width",
+                      "value": "1280"
+                    },
+                    {
+                      "key": "height",
+                      "value": "720"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "full_page",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3baa00b6-c2d7-47c4-929d-1f54c85a2cc5",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "screenshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://example.com"
+                    },
+                    {
+                      "key": "width",
+                      "value": "1280"
+                    },
+                    {
+                      "key": "height",
+                      "value": "720"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "full_page",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2092"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2092"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-snap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3f93972b-87bf-472f-859e-d58bd04958ad",
+    "name": "API Snap Browser API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Snap Browser Images API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/qr",
+            "params": [
+              {
+                "name": "data",
+                "value": "https://example.com",
+                "type": "query",
+                "description": "The text or URL to encode in the QR code. Also accepted as `url`."
+              },
+              {
+                "name": "size",
+                "value": "300",
+                "type": "query",
+                "description": "Width/height of the QR code in pixels (max 1000)."
+              },
+              {
+                "name": "format",
+                "value": "png",
+                "type": "query",
+                "description": "Output format."
+              },
+              {
+                "name": "dark",
+                "value": "#000000",
+                "type": "query",
+                "description": "Hex color for dark (foreground) modules."
+              },
+              {
+                "name": "light",
+                "value": "#ffffff",
+                "type": "query",
+                "description": "Hex color for light (background) modules."
+              }
+            ]
+          },
+          "docs": "Generate a QR code image for any text or URL. Returns PNG or SVG."
+        },
+        {
+          "info": {
+            "name": "Resize and Convert Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/resize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resize and/or convert images to PNG, WebP, JPEG, or AVIF. Accepts multipart form data (with an `image` file field) or a JSON body with a base64-encoded image or image URL."
+        },
+        {
+          "info": {
+            "name": "Generate Placeholder Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/placeholder",
+            "params": [
+              {
+                "name": "w",
+                "value": "300",
+                "type": "query",
+                "description": "Image width in pixels (1–2000)."
+              },
+              {
+                "name": "h",
+                "value": "200",
+                "type": "query",
+                "description": "Image height in pixels (1–2000)."
+              },
+              {
+                "name": "bg",
+                "value": "cccccc",
+                "type": "query",
+                "description": "Background color as a hex string without the `#` prefix."
+              },
+              {
+                "name": "fg",
+                "value": "666666",
+                "type": "query",
+                "description": "Text/foreground color as a hex string without the `#` prefix."
+              },
+              {
+                "name": "text",
+                "value": "Hello",
+                "type": "query",
+                "description": "Label text to display on the image. Defaults to the dimensions (e.g. `300x200`)."
+              }
+            ]
+          },
+          "docs": "Generate an SVG placeholder image of any size with customizable background color, text color, and label."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

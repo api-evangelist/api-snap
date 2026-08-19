@@ -1,0 +1,585 @@
+{
+  "item": [
+    {
+      "id": "8ea9ada1-c094-4bff-83a6-96d101ffe32f",
+      "name": "Documents",
+      "description": {
+        "content": "Document generation and conversion (PDF, Markdown)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d58c5d6e-afd6-439e-a64a-cbeef5a4a00d",
+          "name": "Convert HTML to PDF",
+          "request": {
+            "name": "Convert HTML to PDF",
+            "description": {
+              "content": "Convert an HTML string to a downloadable PDF file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"html\": \"<string>\",\n  \"title\": \"Document\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0ee9a03-f3d9-45ca-9014-19c728f7050a",
+              "name": "PDF file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"html\": \"<h1>Hello World</h1><p>This is my PDF content.</p>\",\n  \"title\": \"My Document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "attachment; filename=\"<title>.pdf\"",
+                  "key": "Content-Disposition",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "682e5aaf-b029-47c0-a4a7-1403968416fc",
+              "name": "Missing html field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"html\": \"<h1>Hello World</h1><p>This is my PDF content.</p>\",\n  \"title\": \"My Document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05dd972f-9e4c-42e2-91d0-88cd155d0796",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"html\": \"<h1>Hello World</h1><p>This is my PDF content.</p>\",\n  \"title\": \"My Document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60ad0400-fa23-4199-b7ff-77132814bb3c",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"html\": \"<h1>Hello World</h1><p>This is my PDF content.</p>\",\n  \"title\": \"My Document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1842"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5338875-dcb9-4e1a-b4af-2fd53b22454f",
+          "name": "Convert Markdown to HTML",
+          "request": {
+            "name": "Convert Markdown to HTML",
+            "description": {
+              "content": "Convert a Markdown string to HTML. By default returns a fully styled HTML page; pass `styled: false` to get raw HTML fragment in a JSON response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "markdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"markdown\": \"<string>\",\n  \"styled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdc2dc07-fc50-4a98-a817-d3874f0be4da",
+              "name": "Converted HTML. Returns a full HTML page when `styled` is true, or a JSON object with `html` key when `styled` is false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"# Hello\\n\\nThis is **bold** text.\",\n  \"styled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"html\": \"<h1>Invoice</h1><p>Total: $100.00</p>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8804c91-5b4d-4d3f-95eb-7bb02a4184d2",
+              "name": "Missing markdown field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"# Hello\\n\\nThis is **bold** text.\",\n  \"styled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad request\",\n  \"message\": \"Invalid parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "636f7621-f913-4cdc-82dc-7453f88cf37d",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"# Hello\\n\\nThis is **bold** text.\",\n  \"styled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e152a49-06d4-40f0-94e8-c18ca397ccb8",
+              "name": "Monthly API call limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"# Hello\\n\\nThis is **bold** text.\",\n  \"styled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Monthly call limit",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1842"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining calls this month",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded\",\n  \"usage\": 1,\n  \"limit\": 1,\n  \"upgrade_url\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-snap.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92e08dce-c936-4de8-a646-a79b95df1436",
+    "name": "API Snap Browser Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Snap is a developer utility API that bundles 13+ common tools into a single REST API with one API key. Generate QR codes, resize images, capture screenshots, convert HTML to PDF, hash strings, generate UUIDs, extract URL metadata, and more. Free tier includes 100 API calls/month with no credit card required. All endpoints support CORS and return JSON (or binary where appropriate). Built for developers who want to ship faster.\n\nContact Support:\n Name: API Snap Support",
+      "type": "text/plain"
+    }
+  }
+}

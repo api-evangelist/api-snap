@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Snap Browser Security API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hash a String (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-snap.com/api/hash",
+            "params": [
+              {
+                "name": "text",
+                "value": "Hello World",
+                "type": "query",
+                "description": "The string to hash."
+              },
+              {
+                "name": "algorithm",
+                "value": "sha256",
+                "type": "query",
+                "description": "Hash algorithm to use."
+              },
+              {
+                "name": "encoding",
+                "value": "hex",
+                "type": "query",
+                "description": "Output encoding."
+              }
+            ]
+          },
+          "docs": "Compute a cryptographic hash of a string using the specified algorithm."
+        },
+        {
+          "info": {
+            "name": "Hash a String (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/hash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute a cryptographic hash of a string via JSON body. Useful for hashing large inputs."
+        },
+        {
+          "info": {
+            "name": "Decode a JWT Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-snap.com/api/jwt-decode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decode a JSON Web Token (JWT) and return its header, payload, and human-readable expiry information. Does not verify the signature."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
