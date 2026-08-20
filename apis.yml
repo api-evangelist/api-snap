@@ -183,6 +183,8 @@ apis:
   humanURL: https://api-snap.com/
   baseURL: https://api-snap.com/api
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
