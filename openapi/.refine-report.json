@@ -1,11 +1,7 @@
 {
   "provider": "api-snap",
   "sources": [
-    "api-snap-browser-api-openapi.yml",
-    "api-snap-documents-api-openapi.yml",
-    "api-snap-images-api-openapi.yml",
-    "api-snap-security-api-openapi.yml",
-    "api-snap-utilities-api-openapi.yml"
+    "_original/api-snap-openapi.yml"
   ],
   "outputs": [
     "api-snap-browser-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "api-snap-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "api-snap-browser-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "api-snap-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "api-snap-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "api-snap-security-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "api-snap-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
