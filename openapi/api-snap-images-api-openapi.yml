@@ -320,6 +320,30 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    RateLimitExceeded:
+      description: Monthly API call limit reached
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Monthly call limit
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining calls this month
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
   schemas:
     RateLimitError:
       type: object
@@ -349,30 +373,6 @@ components:
           example: example
       required:
       - error
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: 'API key required. Pass via Authorization: Bearer <key> header or ?api_key= query param.'
-    RateLimitExceeded:
-      description: Monthly API call limit reached
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-      headers:
-        X-RateLimit-Limit:
-          schema:
-            type: integer
-          description: Monthly call limit
-        X-RateLimit-Remaining:
-          schema:
-            type: integer
-          description: Remaining calls this month
   securitySchemes:
     BearerAuth:
       type: http
