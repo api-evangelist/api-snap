@@ -1,4 +1,4 @@
-# API Snap (api-snap)
+# API Snap
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,345 +66,192 @@
 
 API Snap is a developer utility platform that consolidates 13+ commonly needed REST APIs into a single, unified service with one API key. The platform provides QR code generation, screenshot capture, image resize and conversion, HTML-to-PDF rendering, Markdown-to-HTML conversion, URL metadata extraction, cryptographic hashing, JWT decoding, Base64 encoding/decoding, UUID and unique ID generation, color format conversion, lorem ipsum text generation, and SVG placeholder image generation. API Snap aims to eliminate dependency bloat by letting developers replace small libraries and self-hosted utility services with simple HTTP requests against a managed, rate-limited, multi-tenant API.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/api-snap/refs/heads/main/apis.yml)
+**Areas:** API Utilities · Developer Tools · QR Codes · Screenshots · Image Processing · PDF Generation · Markdown · URL Metadata · Hashing · JWT · Base64 · UUID
 
-## Scope
+## API Snap on APIs.io
 
-- **Type:** Index
+Everything profiled for API Snap is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/api-snap/](https://apis.io/providers/api-snap/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- API Utilities
-- Developer Tools
-- QR Codes
-- Screenshots
-- Image Processing
-- PDF Generation
-- Markdown
-- URL Metadata
-- Hashing
-- JWT
-- Base64
-- UUID
-- Color Conversion
-- Lorem Ipsum
-- Placeholder Images
+- [API Snap Browser API](https://apis.io/apis/api-snap/api-snap-browser-api/) — Headless browser operations like screenshot capture
+- [API Snap Documents API](https://apis.io/apis/api-snap/api-snap-documents-api/) — Document generation and conversion (PDF, Markdown)
+- [API Snap Images API](https://apis.io/apis/api-snap/api-snap-images-api/) — QR codes, image resizing, and placeholder image generation
+- [API Snap Security API](https://apis.io/apis/api-snap/api-snap-security-api/) — Cryptographic hashing and JWT decoding
+- [API Snap Utilities API](https://apis.io/apis/api-snap/api-snap-utilities-api/) — General-purpose developer utilities
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-06
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### QR Code API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Generate QR codes encoding any text or URL. Supports configurable size up to 1000 pixels, PNG or SVG output formats, and custom foreground/background hex colors. Returns the encoded image directly with the appropriate content type.
+- [Api Snap Agentic Access](https://apis.io/agentic-access/api-snap/api-snap-agentic-access/)
 
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
+#### JSON Schema (7)
 
-#### Tags
+The data models the API reads and writes.
 
-- QR Codes
-- Image Generation
-- Encoding
+- [Base64Result](https://apis.io/schemas/api-snap/base64-base64-result/)
+- [ColorConversion](https://apis.io/schemas/api-snap/color-color-conversion/)
+- [HashResult](https://apis.io/schemas/api-snap/hash-hash-result/)
+- [JwtDecoded](https://apis.io/schemas/api-snap/jwt-decode-jwt-decoded/)
+- [LoremText](https://apis.io/schemas/api-snap/lorem-lorem-text/)
+- [UrlMetadata](https://apis.io/schemas/api-snap/meta-url-metadata/)
+- [IdResult](https://apis.io/schemas/api-snap/uuid-id-result/)
 
-#### Properties
+#### JSON Structure (7)
 
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/qr-generate-example.json)
+Data models expressed in JSON Structure.
 
-### Screenshot API
+- [Base64 Base64 Result Structure](https://apis.io/json-structure/api-snap/base64-base64-result-structure/)
+- [Color Color Conversion Structure](https://apis.io/json-structure/api-snap/color-color-conversion-structure/)
+- [Hash Hash Result Structure](https://apis.io/json-structure/api-snap/hash-hash-result-structure/)
+- [Jwt Decode Jwt Decoded Structure](https://apis.io/json-structure/api-snap/jwt-decode-jwt-decoded-structure/)
+- [Lorem Lorem Text Structure](https://apis.io/json-structure/api-snap/lorem-lorem-text-structure/)
+- [Meta Url Metadata Structure](https://apis.io/json-structure/api-snap/meta-url-metadata-structure/)
+- [Uuid Id Result Structure](https://apis.io/json-structure/api-snap/uuid-id-result-structure/)
 
-Capture a webpage screenshot by URL. Configurable viewport width and height, output format (PNG or JPEG), and an option to capture the full scrollable page. A managed alternative to running headless Chromium or Puppeteer.
+#### JSON-LD (1)
 
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Api Snap Context](https://apis.io/jsonld/api-snap/api-snap-context/)
 
-- Screenshots
-- Browser Automation
-- Web Capture
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/screenshot-capture-example.json)
+- [Api Snap Vocabulary](https://apis.io/vocabularies/api-snap/api-snap-vocabulary/)
 
-### Image Resize API
+#### Examples (13)
 
-Resize and convert images. Accepts a binary upload, base64 string, or remote URL. Supports PNG, JPEG, WebP, and AVIF output, configurable quality, target width and height up to 4096 pixels, and standard fit modes (cover, contain, fill, inside, outside).
+Example requests and responses.
 
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
+- [Base64 Encode Example](https://apis.io/examples/api-snap/base64-encode-example/)
+- [Color Convert Example](https://apis.io/examples/api-snap/color-convert-example/)
+- [Hash String Example](https://apis.io/examples/api-snap/hash-string-example/)
+- [Jwt Decode Example](https://apis.io/examples/api-snap/jwt-decode-example/)
+- [Lorem Generate Example](https://apis.io/examples/api-snap/lorem-generate-example/)
+- [Markdown Render Example](https://apis.io/examples/api-snap/markdown-render-example/)
+- [Meta Extract Example](https://apis.io/examples/api-snap/meta-extract-example/)
+- [Pdf Generate Example](https://apis.io/examples/api-snap/pdf-generate-example/)
+- [Placeholder Generate Example](https://apis.io/examples/api-snap/placeholder-generate-example/)
+- [Qr Generate Example](https://apis.io/examples/api-snap/qr-generate-example/)
+- [Resize Image Example](https://apis.io/examples/api-snap/resize-image-example/)
+- [Screenshot Capture Example](https://apis.io/examples/api-snap/screenshot-capture-example/)
+- [Uuid Generate Example](https://apis.io/examples/api-snap/uuid-generate-example/)
 
-#### Tags
+#### Collections (11)
 
-- Image Processing
-- Image Resize
-- Format Conversion
+Postman and Open Collection request collections.
 
-#### Properties
+- [API Snap](https://apis.io/collections/api-snap/open-api-snap/)
+- [API Snap Browser API](https://apis.io/collections/api-snap/open-api-snap-browser-api/)
+- [API Snap Browser Documents API](https://apis.io/collections/api-snap/open-api-snap-documents-api/)
+- [API Snap Browser Images API](https://apis.io/collections/api-snap/open-api-snap-images-api/)
+- [API Snap Browser Security API](https://apis.io/collections/api-snap/open-api-snap-security-api/)
+- [API Snap Browser Utilities API](https://apis.io/collections/api-snap/open-api-snap-utilities-api/)
+- [API Snap Browser API](https://apis.io/collections/api-snap/postman-api-snap-browser-api/)
+- [API Snap Browser Documents API](https://apis.io/collections/api-snap/postman-api-snap-documents-api/)
+- [API Snap Browser Images API](https://apis.io/collections/api-snap/postman-api-snap-images-api/)
+- [API Snap Browser Security API](https://apis.io/collections/api-snap/postman-api-snap-security-api/)
+- [API Snap Browser Utilities API](https://apis.io/collections/api-snap/postman-api-snap-utilities-api/)
 
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/resize-image-example.json)
+#### Governance rules (2)
 
-### PDF API
+Spectral rulesets for the provider's contracts.
 
-Convert HTML content into a PDF document. Accepts arbitrary HTML and an optional filename title, returning an application/pdf payload with a Content-Disposition header for direct download.
+- [API Snap — jsonschema rules](https://apis.io/rules/api-snap/api-snap-jsonschema-spectral-rules/)
+- [API Snap API Rules](https://apis.io/rules/api-snap/api-snap-spectral-rules/)
 
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- PDF
-- Document Generation
-- HTML to PDF
+- [Api Snap Authentication](https://apis.io/security/api-snap/api-snap-authentication/)
+- [Api Snap Domain Security](https://apis.io/security/api-snap/api-snap-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/pdf-generate-example.json)
+Published plans, tiers and prices.
 
-### Markdown API
+- [Api Snap Plans Pricing](https://apis.io/plans/api-snap/api-snap-plans-pricing/)
 
-Convert Markdown content to HTML. Supports a styled mode that returns a full standalone HTML page with default styling, or an unstyled mode that returns a JSON document with the raw HTML fragment for embedding in your own UI.
+#### Rate limits (1)
 
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
+Published request limits.
 
-#### Tags
+- [Api Snap Rate Limits](https://apis.io/rate-limits/api-snap/api-snap-rate-limits/)
 
-- Markdown
-- HTML
-- Content Conversion
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/markdown-render-example.json)
+- [Api Snap Finops](https://apis.io/finops/api-snap/api-snap-finops/)
 
-### URL Metadata API
+## Where to find this API
 
-Extract URL metadata and Open Graph tags for any web page. Returns a structured JSON document with title, description, image, site name, type, favicon, theme color, author, and published date for use in link previews and content cards.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- URL Metadata
-- Open Graph
-- Link Preview
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/meta-url-metadata-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/meta-url-metadata-structure.json)
-- [Example](examples/meta-extract-example.json)
-
-### Hash API
-
-Compute cryptographic hashes of arbitrary text. Supports MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256, and SHA3-512 algorithms with hex, base64, or base64url encodings. Available via either GET (query parameters) or POST (JSON body).
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- Hashing
-- Cryptography
-- Security
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/hash-hash-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/hash-hash-result-structure.json)
-- [Example](examples/hash-string-example.json)
-
-### JWT Decode API
-
-Decode a JSON Web Token without verification, returning the header and payload as JSON along with computed expiration metadata (expired flag, expiresAt, issuedAt). Useful for debugging tokens and inspecting claims during integration work.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- JWT
-- Tokens
-- Security
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/jwt-decode-jwt-decoded-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/jwt-decode-jwt-decoded-structure.json)
-- [Example](examples/jwt-decode-example.json)
-
-### Base64 API
-
-Base64 encode or decode an arbitrary string. Supports a URL-safe variant for use in URLs and tokens. Accepts a JSON request body specifying the action and returns the result with a confirmation of the action performed.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- Base64
-- Encoding
-- Decoding
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/base64-base64-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/base64-base64-result-structure.json)
-- [Example](examples/base64-encode-example.json)
-
-### UUID API
-
-Generate unique identifiers in multiple formats including UUID v4, NanoID, short NanoID, hex, base64, numeric, and timestamp-based IDs. Supports batch generation of up to 100 IDs per request and an optional prefix for typed IDs (e.g. usr_, ord_).
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- UUID
-- Identifiers
-- ID Generation
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/uuid-id-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/uuid-id-result-structure.json)
-- [Example](examples/uuid-generate-example.json)
-
-### Color API
-
-Convert color values between hex, RGB, and HSL formats. Returns structured representations for each format along with computed brightness (0-255) and a derived isDark boolean useful for choosing accessible foreground colors.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- Color
-- Color Conversion
-- Design Utilities
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/color-color-conversion-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/color-color-conversion-structure.json)
-- [Example](examples/color-convert-example.json)
-
-### Lorem Ipsum API
-
-Generate lorem ipsum placeholder text. Supports configurable paragraph and sentence counts (1-20 each) and either plain text or HTML output for use in design mockups, prototypes, and tests.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- Lorem Ipsum
-- Placeholder Text
-- Content Generation
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/lorem-lorem-text-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/lorem-lorem-text-structure.json)
-- [Example](examples/lorem-generate-example.json)
-
-### Placeholder Image API
-
-Generate SVG placeholder images for design and prototyping. Supports configurable width and height up to 2000 pixels, custom background and foreground hex colors, and optional custom label text rendered in the center of the image.
-
-- **Human URL:** [https://api-snap.com/](https://api-snap.com/)
-- **Base URL:** `https://api-snap.com/api`
-
-#### Tags
-
-- Placeholder Images
-- SVG
-- Design Utilities
-
-#### Properties
-
-- [Documentation](https://api-snap.com/)
-- [OpenAPI](openapi/api-snap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/api-snap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/api-snap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/placeholder-generate-example.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://api-snap.com/)
 - [Documentation](https://api-snap.com/)
-- [API Reference](https://api-snap.com/openapi.json)
-- [OpenAPI](https://api-snap.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [API reference](https://api-snap.com/openapi.json)
 - [Pricing](https://api-snap.com/pricing)
 - [Blog](https://api-snap.com/blog)
-- [GitHub Organization](https://github.com/apisnap)
-- [Authentication](https://api-snap.com/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Plans](plans/api-snap-plans-pricing.yml)
-- [Rate Limits](rate-limits/api-snap-rate-limits.yml)
-- [Fin Ops](finops/api-snap-finops.yml)
-- [JSON-LD](json-ld/api-snap-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/api-snap-spectral-rules.yml)
-- [Vocabulary](vocabulary/api-snap-vocabulary.yaml)
+- [GitHub](https://github.com/apisnap)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 69.0 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 18.4 |
+
+**Agent readiness 33.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.9** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/api-snap/](https://apis.io/providers/api-snap/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for API Snap: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/api-snap/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
